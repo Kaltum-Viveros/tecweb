@@ -75,29 +75,28 @@
 
         //1
         $a = "PHP5";
-        echo $a;
+        echo '$a: '.$a.'<br>';
         //2
-        $z[] = &$a;
-        echo '<br>';    
-        print_r($z);
-        echo '<br>';
+        $z[] = &$a;    
+        echo '$z: '; print_r($z); echo '<br>';
         //3
         $b = "5a version de PHP";
-        echo $b;
+        echo '$b: '.$b.'<br>';
         //4
-        $c = $b*10; // la variable $b se multiplica por 10 y se asigna a la variable $c, la variable b es un string por lo que se convierte a 5
-        echo $c;
-        echo '<br>';
+        $c = intval($b)*10; // la variable $b se multiplica por 10 y se asigna a la variable $c, la variable b es un string por lo que se convierte a 5
+        echo '$c: '.$c.'<br>';
         //5
         $a .= $b; // la variable $a se concatena con la variable $b y se asigna a la variable $a 
-        echo $a;
+        echo '$a: '.$a.'<br>';
         //6
+        settype($b, "int"); // la variable $b se convierte a int
         $b *= $c; // la variable $b se multiplica por la variable $c y se asigna a la variable $b donde b=5 y c=50
-        echo $b;
-        echo '<br>';
+        echo '$b: '.$b.'<br>';
         //7
         $z[0] ="MySQL";
-        print_r($z);
+        echo '$z: '; print_r($z); echo '<br>';
+
+        unset($a, $b, $c, $z);  // Limpia las variables
 
     ?>
 </body>
