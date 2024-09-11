@@ -111,6 +111,20 @@
         echo '<br>';
 
         unset($a, $b, $c, $z);  // Limpia las variables
+
+        //ejercicio 5
+
+        echo '<h2>Ejercicio 5</h2>';
+
+        $a = "7 personas";
+        echo '$a: '.$a.'<br>';
+        $b = (integer) $a;
+        echo '$b: '.$b.'<br>';
+        $a = "9E3";
+        echo '$a: '.$a.'<br>';
+        $c = (double) $a;
+        echo '$c: '.$c.'<br>';
+
         
     ?>
 </body>
