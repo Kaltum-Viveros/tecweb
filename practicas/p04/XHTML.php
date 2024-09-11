@@ -74,7 +74,7 @@
         verificar la evolución del tipo de estas variables (imprime todos los componentes de los arreglo):</p>'; 
 
         //1
-        $a = "PHP5";
+        $a = "PHP5 ";
         echo '$a: '.$a.'<br>';
         //2
         $z[] = &$a;    
@@ -96,8 +96,22 @@
         $z[0] ="MySQL";
         echo '$z: '; print_r($z); echo '<br>';
 
-        unset($a, $b, $c, $z);  // Limpia las variables
+        //unset($a, $b, $c, $z);  // Limpia las variables
 
+        //ejercicio 4
+        echo '<h2>Ejercicio 4</h2>';
+
+        echo '$a: '.$GLOBALS['a'];
+        echo '<br>';
+        echo '$b: '.$GLOBALS['b'];
+        echo '<br>';
+        echo '$c: '.$GLOBALS['c'];
+        echo '<br>';
+        echo '$z: '.$GLOBALS['z'][0];
+        echo '<br>';
+
+        unset($a, $b, $c, $z);  // Limpia las variables
+        
     ?>
 </body>
 </html>
