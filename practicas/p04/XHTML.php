@@ -42,26 +42,22 @@
         $b = 'MySQL';
         $c = &$a;
 
-        echo $a;
-        echo '<br>';
-        echo $b;
-        echo '<br>';
-        echo $c;
+        echo '$a: '.$a.'<br>';
+        echo '$b: '.$b.'<br>';
+        echo '$c: '.$c.'<br>';
 
         echo '<p> Agrega al código actual las siguientes asignaciones y Vuelve a mostrar el contenido de cada una de las variables:</p>';
 
         $a = "PHP server";
         $b = &$a;
 
-        echo $a;
-        echo '<br>';
-        echo $b;
-        echo '<br>';
-        echo $c;
+        echo '$a: '.$a.'<br>';
+        echo '$b: '.$b.'<br>';
+        echo '$c: '.$c.'<br>';
 
         echo '<p> Describe y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones.</p>';
 
-        echo '<p> Se reescribió la variable $a, y la variable $b se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $b. 
+        echo '<p><b>Explicación: </b> Se reescribió la variable $a, y la variable $b se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $b. 
         <br> La variable $c se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $c.</p>';
 
         unset($a, $b, $c);  // Limpia las variables
@@ -144,18 +140,19 @@
         $e = ($a AND $c); // and es verdadero si ambos son verdaderos
         $f = ($a XOR $b); // xor es verdadero si uno de los dos es verdadero pero no ambos
 
+        echo '$a: ';
         var_dump($a);
-        echo "<br>";
+        echo '<br> $b: ';
         var_dump($b);
-        echo "<br>";
+        echo '<br> $c: ';
         var_dump($c);
-        echo "<br>";
+        echo '<br> $d: ';
         var_dump($d);
-        echo "<br>";
+        echo '<br> $e: ';
         var_dump($e);
-        echo "<br>";
+        echo '<br> $f: ';
         var_dump($f);
-        echo "<br>";
+        echo '<br>';
 
         echo '<p> Después investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que se pueda mostrar con un echo: </p>';
         
@@ -163,6 +160,19 @@
         echo '$e: '. var_export($e, true).'<br>';
         
         unset($a, $b, $c, $d, $e, $f);  // Limpia las variables
+
+        //ejercicio 7
+
+        echo '<h2>Ejercicio 7</h2>';
+        
+        echo '<p> Usando la variable predefinida $_SERVER, determina lo siguiente:</p>';    
+
+        echo '<p> <b> a. </b> La versión de Apache y PHP</p>';
+        echo 'Version de Apache: '.$_SERVER['SERVER_SOFTWARE'].'<br>';
+        echo '<p> <b> b. </b> El nombre del sistema operativo (servidor), </p>';
+        echo 'Nombre del sistema operativo: '.$_SERVER['SERVER_NAME'].'<br>';
+        echo '<p> <b> c. </b> El idioma del navegador (cliente).</p>';
+        echo 'Idioma del navegador: '.$_SERVER['HTTP_ACCEPT_LANGUAGE'].'<br>';
     ?>
 </body>
 </html>
