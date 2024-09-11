@@ -29,6 +29,8 @@
         echo '<li>$_element1 es válida porque inicia con guión bajo.</li>';
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
+    
+        unset($_myvar, $_7var, $myvar, $var7, $_element1);  // Limpia las variables
 
         //ejercicio 2
 
@@ -61,6 +63,41 @@
 
         echo '<p> Se reescribió la variable $a, y la variable $b se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $b. 
         <br> La variable $c se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $c.</p>';
+
+        unset($a, $b, $c);  // Limpia las variables
+
+        //ejercicio 3
+
+        echo '<h2>Ejercicio 3</h2>';
+
+        echo '<p> Muestra el contenido de cada variable inmediatamente después de cada asignación, 
+        verificar la evolución del tipo de estas variables (imprime todos los componentes de los arreglo):</p>'; 
+
+        //1
+        $a = "PHP5";
+        echo $a;
+        //2
+        $z[] = &$a;
+        echo '<br>';    
+        print_r($z);
+        echo '<br>';
+        //3
+        $b = "5a version de PHP";
+        echo $b;
+        //4
+        $c = $b*10; // la variable $b se multiplica por 10 y se asigna a la variable $c, la variable b es un string por lo que se convierte a 5
+        echo $c;
+        echo '<br>';
+        //5
+        $a .= $b; // la variable $a se concatena con la variable $b y se asigna a la variable $a 
+        echo $a;
+        //6
+        $b *= $c; // la variable $b se multiplica por la variable $c y se asigna a la variable $b donde b=5 y c=50
+        echo $b;
+        echo '<br>';
+        //7
+        $z[0] ="MySQL";
+        print_r($z);
 
     ?>
 </body>
