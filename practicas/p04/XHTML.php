@@ -29,6 +29,39 @@
         echo '<li>$_element1 es válida porque inicia con guión bajo.</li>';
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
+
+        //ejercicio 2
+
+        echo '<h2>Ejercicio 2</h2>';
+
+        echo '<p> Proporcionar los valores de $a, $b, $c como sigue y muestra el contenido de cada variable:</p>';
+
+        $a = "ManejadorSQL";
+        $b = 'MySQL';
+        $c = &$a;
+
+        echo $a;
+        echo '<br>';
+        echo $b;
+        echo '<br>';
+        echo $c;
+
+        echo '<p> Agrega al código actual las siguientes asignaciones y Vuelve a mostrar el contenido de cada una de las variables:</p>';
+
+        $a = "PHP server";
+        $b = &$a;
+
+        echo $a;
+        echo '<br>';
+        echo $b;
+        echo '<br>';
+        echo $c;
+
+        echo '<p> Describe y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones.</p>';
+
+        echo '<p> Se reescribió la variable $a, y la variable $b se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $b. 
+        <br> La variable $c se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $c.</p>';
+
     ?>
 </body>
 </html>
