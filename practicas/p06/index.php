@@ -9,7 +9,8 @@
     <h2>Ejercicio 1</h2>
     <p>Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
     <?php
-        include 'src/funciones.php'; // Incluir el archivo que contiene la función para comprobar si un número es múltiplo de 5 y 7
+        include_once 'src/funciones.php'; 
+        // Incluir el archivo que contiene la función para comprobar si un número es múltiplo de 5 y 7
         if(isset($_GET['numero'])) // Verificar si se ha enviado el número a comprobar, el GET es un array asociativo que contiene las variables enviadas por el método GET
         {
             multiplo($_GET['numero']); // Llamar a la función multiplo con el número enviado por el método GET
@@ -17,9 +18,20 @@
         else 
         {
             echo '<h3>Introduce un número para comprobar si es múltiplo de 5 y 7</h3>';
-        }
+        } 
     ?>
-    
+
+    <h2>Ejercicio 2</h2>
+    <p>Generar 3 números aleatorios hasta obtener una secuencia compuesta por 3 números con la estructura impar, par, impar</p>
+    <?php
+        include_once 'src/funciones.php'; 
+        // Ejecutar el programa
+        generarMatriz();
+    ?>
+
+
+
+
     <h2>Ejemplo de POST</h2>
     <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
         Name: <input type="text" name="name"><br>
