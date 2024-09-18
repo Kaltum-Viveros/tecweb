@@ -37,14 +37,15 @@
             $matriz[] = $fila;
         }
 
-        // Mostrar resultados
-        echo "Secuencia impar, par, impar encontrada tras $iteraciones iteraciones. <br>";
-        echo "Total de números generados: $totalNumerosGenerados <br>";
-
+        /*print_r($matriz);*/        
         // Mostrar la matriz
+
         echo "Matriz generada:<br>";
         foreach ($matriz as $fila) {
             echo implode(", ", $fila) . "<br>";
         }
+
+        // Mostrar resultados
+        echo "$totalNumerosGenerados numeros obtenidos en $iteraciones iteraciones";
     }
 ?>
