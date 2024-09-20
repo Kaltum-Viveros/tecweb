@@ -87,4 +87,209 @@
             }
         }
     }
+
+    $vehiculos = [
+        'ABC1234' => [
+            'Auto' => [
+                'marca' => 'HONDA',
+                'modelo' => 2005,
+                'tipo' => 'sedan'
+            ],
+            'Propietario' => [
+                'nombre' => 'Kaltum Abdala',
+                'ciudad' => 'Veracruz, Cordaba.',
+                'direccion' => 'calle 7 av 11 y 13'
+            ]
+        ],
+        'DEF5678' => [
+            'Auto' => [
+                'marca' => 'MAZDA',
+                'modelo' => 2019,
+                'tipo' => 'sedan'
+            ],
+            'Propietario' => [
+                'nombre' => 'Ma. del Consuelo Molina',
+                'ciudad' => 'Puebla, Pue.',
+                'direccion' => '97 oriente'
+            ]
+        ],
+        'GHI9012' => [
+            'Auto' => [
+                'marca' => 'TOYOTA',
+                'modelo' => 2018,
+                'tipo' => 'hachback'
+            ],
+            'Propietario' => [
+                'nombre' => 'Juan Perez',
+                'ciudad' => 'Puebla, Pue.',
+                'direccion' => 'Av. Reforma 123'
+            ]
+        ],
+        'JKL3456' => [
+            'Auto' => [
+                'marca' => 'FORD',
+                'modelo' => 2017,
+                'tipo' => 'camioneta'
+            ],
+            'Propietario' => [
+                'nombre' => 'Ana Lopez',
+                'ciudad' => 'Guadalajara, Jal.',
+                'direccion' => 'Calle Falsa 123'
+            ]
+        ],
+        'MNO7890' => [
+            'Auto' => [
+                'marca' => 'CHEVROLET',
+                'modelo' => 2016,
+                'tipo' => 'sedan'
+            ],
+            'Propietario' => [
+                'nombre' => 'Carlos Martinez',
+                'ciudad' => 'Monterrey, NL.',
+                'direccion' => 'Av. Siempre Viva 742'
+            ]
+        ],
+        'PQR1234' => [
+            'Auto' => [
+                'marca' => 'NISSAN',
+                'modelo' => 2015,
+                'tipo' => 'hachback'
+            ],
+            'Propietario' => [
+                'nombre' => 'Laura Sanchez',
+                'ciudad' => 'Tijuana, BC.',
+                'direccion' => 'Calle 8 No. 45'
+            ]
+        ],
+        'STU5678' => [
+            'Auto' => [
+                'marca' => 'BMW',
+                'modelo' => 2020,
+                'tipo' => 'sedan'
+            ],
+            'Propietario' => [
+                'nombre' => 'Miguel Angel',
+                'ciudad' => 'Cancún, QR.',
+                'direccion' => 'Blvd. Kukulcan Km 12'
+            ]
+        ],
+        'VWX9012' => [
+            'Auto' => [
+                'marca' => 'AUDI',
+                'modelo' => 2019,
+                'tipo' => 'camioneta'
+            ],
+            'Propietario' => [
+                'nombre' => 'Sofia Hernandez',
+                'ciudad' => 'Mérida, Yuc.',
+                'direccion' => 'Calle 60 No. 123'
+            ]
+        ],
+        'YZA3456' => [
+            'Auto' => [
+                'marca' => 'MERCEDES',
+                'modelo' => 2018,
+                'tipo' => 'sedan'
+            ],
+            'Propietario' => [
+                'nombre' => 'Luis Gomez',
+                'ciudad' => 'Querétaro, Qro.',
+                'direccion' => 'Av. Universidad 456'
+            ]
+        ],
+        'BCD7890' => [
+            'Auto' => [
+                'marca' => 'VOLKSWAGEN',
+                'modelo' => 2017,
+                'tipo' => 'hachback'
+            ],
+            'Propietario' => [
+                'nombre' => 'Mariana Torres',
+                'ciudad' => 'Toluca, Edo. Mex.',
+                'direccion' => 'Calle de la Amargura 789'
+            ]
+        ],
+        'EFG1234' => [
+            'Auto' => [
+                'marca' => 'KIA',
+                'modelo' => 2016,
+                'tipo' => 'camioneta'
+            ],
+            'Propietario' => [
+                'nombre' => 'Pedro Ramirez',
+                'ciudad' => 'León, Gto.',
+                'direccion' => 'Blvd. Adolfo López Mateos 321'
+            ]
+        ],
+        'HIJ5678' => [
+            'Auto' => [
+                'marca' => 'HYUNDAI',
+                'modelo' => 2015,
+                'tipo' => 'sedan'
+            ],
+            'Propietario' => [
+                'nombre' => 'Gabriela Fernandez',
+                'ciudad' => 'Aguascalientes, Ags.',
+                'direccion' => 'Calle de la Paz 654'
+            ]
+        ],
+        'KLM9012' => [
+            'Auto' => [
+                'marca' => 'TESLA',
+                'modelo' => 2021,
+                'tipo' => 'sedan'
+            ],
+            'Propietario' => [
+                'nombre' => 'Ricardo Lopez',
+                'ciudad' => 'Ciudad de México, CDMX.',
+                'direccion' => 'Av. Insurgentes Sur 1234'
+            ]
+        ],
+        'NOP3456' => [
+            'Auto' => [
+                'marca' => 'FIAT',
+                'modelo' => 2014,
+                'tipo' => 'hachback'
+            ],
+            'Propietario' => [
+                'nombre' => 'Sandra Morales',
+                'ciudad' => 'Morelia, Mich.',
+                'direccion' => 'Calle del Sol 987'
+            ]
+        ],
+        'QRS7890' => [
+            'Auto' => [
+                'marca' => 'PEUGEOT',
+                'modelo' => 2013,
+                'tipo' => 'camioneta'
+            ],
+            'Propietario' => [
+                'nombre' => 'Jorge Gutierrez',
+                'ciudad' => 'San Luis Potosí, SLP.',
+                'direccion' => 'Av. Carranza 456'
+            ]
+        ]
+    ];
+
+    function mostrarVehiculos($matricula, $todos) {
+        global $vehiculos;
+        if (isset($matricula)) {
+            if (isset($vehiculos[$matricula])) {
+                echo '<pre>';
+                print_r($vehiculos[$matricula]);
+                echo '</pre>';
+            } else {
+                echo '<p>No se encontró el vehículo con matrícula ' . htmlspecialchars($matricula) . '.</p>';
+            }
+        }
+
+        if (isset($todos)) {
+            echo '<pre>';
+            print_r($vehiculos);
+            echo '</pre>';
+        }
+    }
+
+    
+
 ?>

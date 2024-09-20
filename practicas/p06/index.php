@@ -48,14 +48,14 @@
     <fieldset>
     <legend><h2>Ejercicio 5</h2> </legend>
     <!-- el ejercicio debe implementarse en formularios simples de HTML5 (solicitud) y como respuesta devolver un XHTML generado por PHP. -->
-    <!--Usar las variables $edad y $sexo en una instrucción if para identificar una persona de sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje debienvenida apropiado.-->
+    <p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje debienvenida apropiado</p>
     <form method="post">
         Edad: <input type="text" name="edad" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required> 
         Sexo:<select name="sexo">
                 <option value="masculino">Masculino</option>
                 <option value="femenino">Femenino</option>
             </select>
-        <input type="submit">
+            <input type="submit" style="margin-bottom: 20px">
     </form>
     </fieldset>
 
@@ -64,21 +64,28 @@
         bienvenida($_POST["edad"], $_POST["sexo"]);
     ?>
     
-    <h2>Ejemplo de POST</h2>
-    <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
-        Name: <input type="text" name="name"><br>
-        E-mail: <input type="text" name="email"><br>
-        <input type="submit">
+    <fieldset>
+    <legend><h2>Ejercicio 6</h2></legend>
+    <p> Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de una ciudad.</p>
+    
+    <h2>Consulta de Vehículos</h2>
+    <form method="post">
+        Matrícula: <input type="text" name="matricula">
+        <input type="submit" value="Consultar">
+        <br><br>
     </form>
-    <br>
+
+    <form method="post">
+        <input type="submit" name="todos" value="Mostrar Todos los Autos" style="margin-bottom: 20px">
+    </form>
+    </fieldset>
 
     <?php
-        if(isset($_POST["name"]) && isset($_POST["email"]))
-        {
-            echo $_POST["name"];
-            echo '<br>';
-            echo $_POST["email"];
-        }
+        include_once 'src/funciones.php';
+        $matricula = isset($_POST["matricula"]) ? $_POST["matricula"] : null;
+        $todos = isset($_POST["todos"]) ? $_POST["todos"] : null;
+        mostrarVehiculos($matricula, $todos);
+        
     ?>
 
 </body>
