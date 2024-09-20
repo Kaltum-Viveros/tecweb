@@ -29,6 +29,14 @@
         generarMatriz();
     ?>
 
+    <h2>Ejercio 3</h2>
+    <p> Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.</p>
+    <!--  Crear una variante de este script utilizando el ciclo do-while.
+    El número dado se debe obtener vía GET. -->
+    <?php
+        include_once 'src/funciones.php'; 
+        multiploazar($_GET['numero']);
+    ?>
 
 
 
