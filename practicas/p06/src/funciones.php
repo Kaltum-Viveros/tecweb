@@ -58,4 +58,33 @@
         echo '<h3>R= El número '.$num.' es múltiplo de '.$numero.'</h3>';
         echo '<h3>Se encontró en '.$contador.' intentos</h3>';
     }
+
+    function generarArregloLetras() {
+        $letras = array();
+        for ($i = 97; $i <= 122; $i++) {
+            $letras[$i] = chr($i); #chr — Devuelve un caracter específico por su código ASCII 
+        }
+        #Lee el arreglo y crea una tabla en XHTML con echo y un ciclo foreach
+        echo "<table border='1' width=100px style='text-align: center;'>";
+        foreach ($letras as $key => $value) {
+            echo "<tr><td>$key</td><td>$value</td></tr>";
+        }
+        echo "</table>";
+    }
+
+    function bienvenida($edad, $sexo) {
+        if(isset($_POST["edad"]) && isset($_POST["sexo"]))
+        {
+            $edad = $_POST["edad"];
+            $sexo = $_POST["sexo"];
+            if($sexo == "femenino" && $edad >= 18 && $edad <= 35)
+            {
+                echo '<h3>Bienvenida, usted está en el rango de edad permitido.</h3>';
+            }
+            else
+            {
+                echo '<h3>Usted no cumple los requisitos.</h3>';
+            }
+        }
+    }
 ?>

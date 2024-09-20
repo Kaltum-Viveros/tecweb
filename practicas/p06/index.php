@@ -38,8 +38,32 @@
         multiploazar($_GET['numero']);
     ?>
 
+    <h2>Ejercicio 4</h2>
+    <p>Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la ‘a’ a la ‘z’. Usa la función chr(n) que devuelve el caracter cuyo código ASCII es n para poner el valor en cada índice. Es decir: </p>
+    <?php
+        include_once 'src/funciones.php';
+        generarArregloLetras();
+    ?>
 
+    <fieldset>
+    <legend><h2>Ejercicio 5</h2> </legend>
+    <!-- el ejercicio debe implementarse en formularios simples de HTML5 (solicitud) y como respuesta devolver un XHTML generado por PHP. -->
+    <!--Usar las variables $edad y $sexo en una instrucción if para identificar una persona de sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje debienvenida apropiado.-->
+    <form method="post">
+        Edad: <input type="text" name="edad" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required> 
+        Sexo:<select name="sexo">
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+            </select>
+        <input type="submit">
+    </form>
+    </fieldset>
 
+    <?php
+        include_once 'src/funciones.php';
+        bienvenida($_POST["edad"], $_POST["sexo"]);
+    ?>
+    
     <h2>Ejemplo de POST</h2>
     <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
         Name: <input type="text" name="name"><br>
@@ -47,6 +71,7 @@
         <input type="submit">
     </form>
     <br>
+
     <?php
         if(isset($_POST["name"]) && isset($_POST["email"]))
         {
@@ -55,5 +80,6 @@
             echo $_POST["email"];
         }
     ?>
+
 </body>
 </html>
