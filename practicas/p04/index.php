@@ -42,18 +42,14 @@
         $b = 'MySQL';
         $c = &$a;
 
-        echo '$a: '.$a.'<br />';
-        echo '$b: '.$b.'<br />';
-        echo '$c: '.$c.'<br />';
+        echo '<p> $a: '.$a.'<br />'.'$b: '.$b.'<br />'.'$c: '.$c.'</p>';
 
         echo '<p> Agrega al código actual las siguientes asignaciones y Vuelve a mostrar el contenido de cada una de las variables:</p>';
 
         $a = "PHP server";
         $b = &$a;
 
-        echo '$a: '.$a.'<br />';
-        echo '$b: '.$b.'<br />';
-        echo '$c: '.$c.'<br />';
+        echo '<p> $a: '.$a.'<br />'.'$b: '.$b.'<br />'.'$c: '.$c.'<br />'.'</p>';
 
         echo '<p> Describe y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones.</p>';
 
@@ -71,26 +67,30 @@
 
         //1
         $a = "PHP5 ";
-        echo '$a: '.$a.'<br />';
+        echo '<p>'.'$a: '.$a.'</p>';
         //2
         $z[] = &$a;    
-        echo '$z: '; print_r($z); echo '<br />';
+        echo '<p> $z: '; 
+        print_r($z); 
+        echo '</p>';
         //3
         $b = "5a version de PHP";
-        echo '$b: '.$b.'<br />';
+        echo '<p> $b: '.$b.'</p>';
         //4
         $c = intval($b)*10; // la variable $b se multiplica por 10 y se asigna a la variable $c, la variable b es un string por lo que se convierte a 5
-        echo '$c: '.$c.'<br />';
+        echo '<p> $c: '.$c.'</p>';
         //5
         $a .= $b; // la variable $a se concatena con la variable $b y se asigna a la variable $a 
-        echo '$a: '.$a.'<br />';
+        echo '<p> $a: '.$a.'</p>';
         //6
-        settype($b, "int"); // la variable $b se convierte a int
+        settype($b, 'int'); // la variable $b se convierte a int
         $b *= $c; // la variable $b se multiplica por la variable $c y se asigna a la variable $b donde b=5 y c=50
-        echo '$b: '.$b.'<br />';
+        echo '<p> $b: '.$b.'</p>';
         //7
         $z[0] ="MySQL";
-        echo '$z: '; print_r($z); echo '<br />';
+        echo '<p> $z: '; 
+        print_r($z); 
+        echo '</p>';
 
         //unset($a, $b, $c, $z);  // Limpia las variables
 
@@ -99,14 +99,7 @@
 
         echo '<p> Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de la matriz $GLOBALS o del modificador global de PHP. </p>';
 
-        echo '$a: '.$GLOBALS['a'];
-        echo '<br />';
-        echo '$b: '.$GLOBALS['b'];
-        echo '<br />';
-        echo '$c: '.$GLOBALS['c'];
-        echo '<br />';
-        echo '$z: '.$GLOBALS['z'][0];
-        echo '<br />';
+        echo '<p>'. '$a: '.$GLOBALS['a'].'<br />'. '$b: '.$GLOBALS['b'].'<br />'. '$c: '.$GLOBALS['c'].'<br />'. '$z: '.$GLOBALS['z'][0].'</p>';
 
         unset($a, $b, $c, $z);  // Limpia las variables
 
@@ -117,13 +110,16 @@
         echo '<p> Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>';
 
         $a = "7 personas";
-        echo '$a: '.$a.'<br />';
+        echo  '<p> $a: '.$a.'</p>';
+
         $b = (integer) $a;
-        echo '$b: '.$b.'<br />';
+        echo '<p> $b: '.$b.'</p>';
+
         $a = "9E3";
-        echo '$a: '.$a.'<br />';
+        echo '<p> $a: '.$a.'</p>';
+
         $c = (double) $a;
-        echo '$c: '.$c.'<br />';
+        echo '<p> $c: '.$c.'</p>';
 
         unset($a, $b, $c);  // Limpia las variables
 
@@ -131,33 +127,43 @@
 
         echo '<h2>Ejercicio 6</h2>';
 
-        echo '<p> Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas usando la función var_dump(<datos>). </p>';
+        echo '<p> Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas usando la función vardump. </p>';
 
         $a = "0";
         $b = "TRUE";
         $c = FALSE;
-        $d = ($a OR $b);  // or es verdadero si uno de los dos es verdadero
-        $e = ($a AND $c); // and es verdadero si ambos son verdaderos
+        $d = ($a || $b);  // or es verdadero si uno de los dos es verdadero
+        $e = ($a && $c); // and es verdadero si ambos son verdaderos
         $f = ($a XOR $b); // xor es verdadero si uno de los dos es verdadero pero no ambos
 
-        echo '$a: ';
+        echo '<p> $a: ';
         var_dump($a);
-        echo '<br /> $b: ';
+        echo '</p>';
+
+        echo '<p> $b: ';
         var_dump($b);
-        echo '<br /> $c: ';
+        echo '</p>';
+
+        echo '<p> $c: ';
         var_dump($c);
-        echo '<br /> $d: ';
+        echo '</p>';
+
+        echo '<p> $d: ';
         var_dump($d);
-        echo '<br /> $e: ';
+        echo '</p>';
+
+        echo '<p> $e: ';
         var_dump($e);
-        echo '<br /> $f: ';
+        echo '</p>';
+
+        echo '<p> $f:';
         var_dump($f);
-        echo '<br />';
+        echo '</p>';
 
         echo '<p> Después investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que se pueda mostrar con un echo: </p>';
         
-        echo '$c: '. var_export($c, true).'<br />';
-        echo '$e: '. var_export($e, true).'<br />';
+        echo '<p> $c: '. var_export($c, true).'</p>';
+        echo '<p> $e: '. var_export($e, true).'</p>';
         
         unset($a, $b, $c, $d, $e, $f);  // Limpia las variables
 
@@ -167,12 +173,18 @@
         
         echo '<p> Usando la variable predefinida $_SERVER, determina lo siguiente:</p>';    
 
-        echo '<p> <b> a. </b> La versión de Apache y PHP</p>';
-        echo 'Version de Apache: '.$_SERVER['SERVER_SOFTWARE'].'<br />';
-        echo '<p> <b> b. </b> El nombre del sistema operativo (servidor), </p>';
-        echo 'Nombre del sistema operativo: '.$_SERVER['SERVER_NAME'].'<br />';
-        echo '<p> <b> c. </b> El idioma del navegador (cliente).</p>';
-        echo 'Idioma del navegador: '.$_SERVER['HTTP_ACCEPT_LANGUAGE'].'<br />';
+        echo '<p> <b> a. </b> La versión de Apache y PHP <br />'.$_SERVER['SERVER_SOFTWARE'].'</p>';
+
+        echo '<p> <b> b. </b> El nombre del sistema operativo (servidor) <br />'.$_SERVER['SERVER_NAME'].'</p>';
+
+        echo '<p> <b> c. </b> El idioma del navegador (cliente): <br />'.$_SERVER['HTTP_ACCEPT_LANGUAGE'].'</p>';
+
     ?>
+    <!-- Icono de documento comprobado con éxito como XHTML 1.1 por W3C-->
+    <p>
+        <a href="https://validator.w3.org/markup/check?uri=referer"><img
+        src="https://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+    </p>
+
 </body>
 </html>
