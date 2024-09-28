@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Práctica 3</title>
+    <title>Práctica 4</title>
 </head>
 <body>
     <h2>Ejercicio 1</h2>
@@ -42,23 +42,23 @@
         $b = 'MySQL';
         $c = &$a;
 
-        echo '$a: '.$a.'<br>';
-        echo '$b: '.$b.'<br>';
-        echo '$c: '.$c.'<br>';
+        echo '$a: '.$a.'<br />';
+        echo '$b: '.$b.'<br />';
+        echo '$c: '.$c.'<br />';
 
         echo '<p> Agrega al código actual las siguientes asignaciones y Vuelve a mostrar el contenido de cada una de las variables:</p>';
 
         $a = "PHP server";
         $b = &$a;
 
-        echo '$a: '.$a.'<br>';
-        echo '$b: '.$b.'<br>';
-        echo '$c: '.$c.'<br>';
+        echo '$a: '.$a.'<br />';
+        echo '$b: '.$b.'<br />';
+        echo '$c: '.$c.'<br />';
 
         echo '<p> Describe y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones.</p>';
 
         echo '<p><b>Explicación: </b> Se reescribió la variable $a, y la variable $b se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $b. 
-        <br> La variable $c se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $c.</p>';
+        <br /> La variable $c se asignó por referencia a la variable $a, por lo que al cambiar el valor de $a también cambia el valor de $c.</p>';
 
         unset($a, $b, $c);  // Limpia las variables
 
@@ -71,26 +71,26 @@
 
         //1
         $a = "PHP5 ";
-        echo '$a: '.$a.'<br>';
+        echo '$a: '.$a.'<br />';
         //2
         $z[] = &$a;    
-        echo '$z: '; print_r($z); echo '<br>';
+        echo '$z: '; print_r($z); echo '<br />';
         //3
         $b = "5a version de PHP";
-        echo '$b: '.$b.'<br>';
+        echo '$b: '.$b.'<br />';
         //4
         $c = intval($b)*10; // la variable $b se multiplica por 10 y se asigna a la variable $c, la variable b es un string por lo que se convierte a 5
-        echo '$c: '.$c.'<br>';
+        echo '$c: '.$c.'<br />';
         //5
         $a .= $b; // la variable $a se concatena con la variable $b y se asigna a la variable $a 
-        echo '$a: '.$a.'<br>';
+        echo '$a: '.$a.'<br />';
         //6
         settype($b, "int"); // la variable $b se convierte a int
         $b *= $c; // la variable $b se multiplica por la variable $c y se asigna a la variable $b donde b=5 y c=50
-        echo '$b: '.$b.'<br>';
+        echo '$b: '.$b.'<br />';
         //7
         $z[0] ="MySQL";
-        echo '$z: '; print_r($z); echo '<br>';
+        echo '$z: '; print_r($z); echo '<br />';
 
         //unset($a, $b, $c, $z);  // Limpia las variables
 
@@ -100,13 +100,13 @@
         echo '<p> Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de la matriz $GLOBALS o del modificador global de PHP. </p>';
 
         echo '$a: '.$GLOBALS['a'];
-        echo '<br>';
+        echo '<br />';
         echo '$b: '.$GLOBALS['b'];
-        echo '<br>';
+        echo '<br />';
         echo '$c: '.$GLOBALS['c'];
-        echo '<br>';
+        echo '<br />';
         echo '$z: '.$GLOBALS['z'][0];
-        echo '<br>';
+        echo '<br />';
 
         unset($a, $b, $c, $z);  // Limpia las variables
 
@@ -117,13 +117,13 @@
         echo '<p> Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>';
 
         $a = "7 personas";
-        echo '$a: '.$a.'<br>';
+        echo '$a: '.$a.'<br />';
         $b = (integer) $a;
-        echo '$b: '.$b.'<br>';
+        echo '$b: '.$b.'<br />';
         $a = "9E3";
-        echo '$a: '.$a.'<br>';
+        echo '$a: '.$a.'<br />';
         $c = (double) $a;
-        echo '$c: '.$c.'<br>';
+        echo '$c: '.$c.'<br />';
 
         unset($a, $b, $c);  // Limpia las variables
 
@@ -142,22 +142,22 @@
 
         echo '$a: ';
         var_dump($a);
-        echo '<br> $b: ';
+        echo '<br /> $b: ';
         var_dump($b);
-        echo '<br> $c: ';
+        echo '<br /> $c: ';
         var_dump($c);
-        echo '<br> $d: ';
+        echo '<br /> $d: ';
         var_dump($d);
-        echo '<br> $e: ';
+        echo '<br /> $e: ';
         var_dump($e);
-        echo '<br> $f: ';
+        echo '<br /> $f: ';
         var_dump($f);
-        echo '<br>';
+        echo '<br />';
 
         echo '<p> Después investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que se pueda mostrar con un echo: </p>';
         
-        echo '$c: '. var_export($c, true).'<br>';
-        echo '$e: '. var_export($e, true).'<br>';
+        echo '$c: '. var_export($c, true).'<br />';
+        echo '$e: '. var_export($e, true).'<br />';
         
         unset($a, $b, $c, $d, $e, $f);  // Limpia las variables
 
@@ -168,11 +168,11 @@
         echo '<p> Usando la variable predefinida $_SERVER, determina lo siguiente:</p>';    
 
         echo '<p> <b> a. </b> La versión de Apache y PHP</p>';
-        echo 'Version de Apache: '.$_SERVER['SERVER_SOFTWARE'].'<br>';
+        echo 'Version de Apache: '.$_SERVER['SERVER_SOFTWARE'].'<br />';
         echo '<p> <b> b. </b> El nombre del sistema operativo (servidor), </p>';
-        echo 'Nombre del sistema operativo: '.$_SERVER['SERVER_NAME'].'<br>';
+        echo 'Nombre del sistema operativo: '.$_SERVER['SERVER_NAME'].'<br />';
         echo '<p> <b> c. </b> El idioma del navegador (cliente).</p>';
-        echo 'Idioma del navegador: '.$_SERVER['HTTP_ACCEPT_LANGUAGE'].'<br>';
+        echo 'Idioma del navegador: '.$_SERVER['HTTP_ACCEPT_LANGUAGE'].'<br />';
     ?>
 </body>
 </html>
