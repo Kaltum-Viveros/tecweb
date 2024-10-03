@@ -59,7 +59,7 @@ respuesta que determine el error cometido. -->
     if ($result->num_rows > 0) { // Si hay al menos un registro
         echo '<p>El producto ya se encuentra registrado</p>';
     } else {
-        $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', 0)";
+        $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', 0)"; // Se crea el registro a insertar con el valor 0 para el campo de eliminado
         if ($link->query($sql)) { // Ejecuta la consulta y guarda el resultado
             echo '<p>Producto insertado con ID: ' . $link->insert_id . '</p>';
         } else {
