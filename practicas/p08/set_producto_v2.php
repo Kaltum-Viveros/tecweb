@@ -59,9 +59,21 @@ respuesta que determine el error cometido. -->
     if ($result->num_rows > 0) { // Si hay al menos un registro
         echo '<p>El producto ya se encuentra registrado</p>';
     } else {
-        $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', 0)"; // Se crea el registro a insertar con el valor 0 para el campo de eliminado
+        //$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', 0)"; // Se crea el registro a insertar con el valor 0 para el campo de eliminado
+        $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen) VALUES ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
+        
         if ($link->query($sql)) { // Ejecuta la consulta y guarda el resultado
             echo '<p>Producto insertado con ID: ' . $link->insert_id . '</p>';
+            echo '<h2>Resumen del Producto:</h2>';
+            echo '<ul>';
+            echo '<li><strong>Nombre:</strong> <em>' . $nombre . '</em></li>';
+            echo '<li><strong>Marca:</strong> <em>' . $marca . '</em></li>';
+            echo '<li><strong>Modelo:</strong> <em>' . $modelo . '</em></li>';
+            echo '<li><strong>Precio:</strong> <em>' . $precio . '</em></li>';
+            echo '<li><strong>Detalles:</strong> <em>' . $detalles . '</em></li>';
+            echo '<li><strong>Unidades:</strong> <em>' . $unidades . '</em></li>';
+            echo '<li><strong>Imagen:</strong> <em>' . $imagen . '</em></li>';
+            echo '</ul>';
         } else {
             echo '<p>El Producto no pudo ser insertado </p>'; 
         }
