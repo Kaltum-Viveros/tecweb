@@ -8,3 +8,7 @@ function getDatos(){
     var div2 = document.getElementById('edad');
     div2.innerHTML = '<h3>Edad: ' + edad + '</h3>';
 }
+
+function ejemplo1(){
+    document.write('<h3>Hola Mundo</h3>');
+}
