@@ -216,3 +216,85 @@ function ejemplo13(){
     document.write(f+' ');
     }
 }
+
+//Ejemplo JS05 - pag. 6
+function ejemplo14(){
+    document.write("Cuidado<br>");
+    document.write("Ingresa tu documento correctamente<br>");
+    document.write("Cuidado<br>");
+    document.write("Ingresa tu documento correctamente<br>");
+    document.write("Cuidado<br>");
+    document.write("Ingresa tu documento correctamente<br>");
+}
+
+//Ejemplo JS05 - pag. 7
+function ejemplo15(){
+    function mostrarMensaje() {
+        document.write('Cuidado<br>');
+        document.write('Ingresa tu documento correctamente<br>');
+    }
+    mostrarMensaje();
+    mostrarMensaje();
+    mostrarMensaje();
+}
+
+//Ejemplo JS05 - pag. 10
+function ejemplo16(){
+    function mostrarRango(x1,x2) {
+        var inicio;
+        for(inicio=x1; inicio<=x2; inicio++) {
+        document.write(inicio+' ');
+        }
+    }
+    var valor1,valor2;
+    valor1 = prompt('Ingresa el valor inferior:', '');
+    valor1 = parseInt(valor1);
+    valor2 = prompt('Ingresa el valor superior:', '');
+    valor2 = parseInt(valor2);
+    mostrarRango(valor1,valor2);
+}
+
+//Ejemplo JS05 - pag. 13
+function ejemplo17(){
+    function convertirCastellano(x) {
+        if(x==1)
+            return "Uno";
+        else
+            if(x==2)
+                return "Dos";
+            else
+                if(x==3)
+                    return "Tres";
+                else
+                    if(x==4)
+                        return "Cuatro";
+                    else
+                        if(x==5)
+                            return "Cinco";
+                        else
+                            return "Valor incorrecto";
+        }
+        var valor = prompt("Ingresa un valor entre 1 y 5", "");
+        valor = parseInt(valor);
+        var r = convertirCastellano(valor);
+        document.write(r);
+}
+
+//Ejemplo JS05 - pag. 15
+function ejemplo18(){
+    function convertirCastellano(x) {
+        switch (x) {
+            case 1: return "Uno";
+            case 2: return "Dos";
+            case 3: return "Tres";
+            case 4: return "Cuatro";
+            case 5: return "Cinco";
+            default: return "Valor incorrecto";
+        }
+    }
+
+    var valor = prompt("Ingresa un valor entre 1 y 5", "");
+    valor = parseInt(valor);
+    var r = convertirCastellano(valor);
+    document.write(r);
+}
