@@ -144,3 +144,75 @@ function ejemplo8(){
     }
 }
 
+//Ejemplo JS03 - pag. 21
+function ejemplo9(){
+    var col;
+    col = prompt('Ingresa el color con que quierar pintar el fondo de la ventana (rojo, verde, azul)' , '' );
+    switch (col) {
+    case 'rojo': document.bgColor='#ff0000'; //bgColor es una propiedad de document pero no es estándar y no funciona en todos los navegadores modernos, es mejor usar document.body.style.backgroundColor
+
+    break;
+
+    case 'verde': document.bgColor='#00ff00';
+
+    break;
+
+    case 'azul': document.bgColor='#0000ff';
+
+    break;
+    }
+}
+
+//Ejemplo JS04 - pag. 5
+function ejemplo10(){
+    var x;
+    x=1;
+    while (x<=100) {
+    document.write(x);
+    document.write('<br>');
+    x=x+1;
+    }
+}
+
+//Ejemplo JS04 - pag. 6
+function ejemplo11(){
+    var x=1;
+    var suma=0;
+    var valor;
+    while (x<=5){
+    valor = prompt('Ingresa el valor:', '');
+    valor = parseInt(valor);
+    suma = suma+valor;
+    x = x+1;
+    }
+    document.write('La suma de los valores es '+suma+'<br>');
+}
+
+//Ejemplo JS04 - pag. 12
+function ejemplo12(){
+    var valor;
+    do{
+    valor = prompt('Ingresa un valor entre 0 y 999:', '');
+    valor = parseInt(valor);
+    document.write('El valor '+valor+' tiene ');
+    if (valor<10)
+    document.write('Tiene 1 dígitos')
+    else
+    if (valor<100) {
+    document.write('Tiene 2 dígitos');
+    }
+    else {
+    document.write('Tiene 3 dígitos');
+    }
+    document.write('<br>');
+    }while(valor!=0);
+}
+
+//Ejemplo JS04 - pag. 16
+function ejemplo13(){
+    var f;
+    for(f=1; f<=10; f++)
+    {
+    document.write(f+' ');
+    }
+}
