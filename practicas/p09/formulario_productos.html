@@ -1,0 +1,57 @@
+<!DOCTYPE html >
+<html>
+
+<head>
+    <meta charset="utf-8" >
+    <title>Registro de productos</title>
+    <style type="text/css">
+    ol, ul { 
+    list-style-type: none;
+    }
+    </style>
+    <script src="./src/main.js"></script> <!-- Conexion al js -->
+</head>
+
+<body>
+    <h1>Registro de productos</h1>
+
+    <form id="formularioProductos" action="http://localhost/tecweb/practicas/p08/set_producto_v2.php" method="post">
+
+    <h2>Información de Producto</h2>
+
+    <fieldset>
+        <legend>Información</legend>
+
+        <ul>
+            <li><label for="form-name">Nombre:</label> <input type="text" name="name" id="form-name" onblur="validarNombre();" required></li><br />
+            <li> <label for="form-brand">Marca:</label>
+                <select name="marca" id="form-brand" onblur="validarMarca();" required>
+                    <option value="" disabled selected>Selecciona una marca</option>
+                    <option value="The Ordinary">The Ordinary</option>
+                    <option value="Drunk Elephant">Drunk Elephant</option>
+                    <option value="CLINIQUE">CLINIQUE</option>
+                    <option value="ISDIN">ISDIN</option>
+                    <option value="YSL">YSL</option>
+                    <option value="Neutrogena">Neutrogena</option>
+                    <option value="Rare Beauty">Rare Beauty</option>
+                    <option value="Maybelline">Maybelline</option>
+                    <option value="La Roche-Posay">La Roche-Posay</option>
+                </select>
+            </li><br />
+            <li><label for="form-model">Modelo:</label> <input type="text" name="model" id="form-model" onblur="validarModelo();" required></li><br />
+            <li><label for="form-price">Precio:</label> <input type="number" name="price" id="form-price" onblur="validarPrecio();" required></li><br />
+            <li><label for="form-details">Detalles...</label><br><textarea name="details" rows="4" cols="60" id="form-details" placeholder="No más de 250 caracteres de longitud" onblur="validarDetalles();" ></textarea></li><br />
+            <li><label for="form-units">Unidades:</label> <input type="number" name="units" id="form-units" onblur="validarUnidades();" required></li><br />
+            <li><label for="form-img">Imagen:</label> <input type="text" name="img" id="form-img" onblur="validarImagen();" required></li><br />
+        </ul>
+    </fieldset>
+
+    <p>
+        <input type="submit" value="Subir">
+        <input type="reset">
+    </p>
+
+    </form>
+
+</body>
+</html>
