@@ -12,7 +12,7 @@
       
         <ul></ul>
         <form>
-          <input name="search" id="search" type="search" placeholder="ID">
+          <input name="search" id="search" type="search" placeholder="Criterio de busqueda">
           <button type="submit" onclick="buscarProducto(event)">Buscar</button>
         </form>
     </nav>
@@ -22,7 +22,7 @@
         <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
         <form id="task-form">
           <div>
-            <input type="text" id="name" placeholder="Nombre de producto">
+            <input type="text" id="name" placeholder="Nombre de producto" onblur="validarNombre();" required>
           </div>
           <div>
             <textarea id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>

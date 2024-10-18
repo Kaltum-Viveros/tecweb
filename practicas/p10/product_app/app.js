@@ -60,29 +60,40 @@ function buscarID(e) {
     client.send("id="+id);
 }
 
-// FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
     e.preventDefault();
 
     // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
     var productoJsonString = document.getElementById('description').value;
+
     // SE CONVIERTE EL JSON DE STRING A OBJETO
     var finalJSON = JSON.parse(productoJsonString);
+
     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
     finalJSON['nombre'] = document.getElementById('name').value;
+
+    // VALIDAR EL OBJETO JSON ANTES DE ENVIARLO
+    if (!validarJson(finalJSON)) {
+        // Si la validación falla, detener el proceso de envío
+        return;
+    }
+
     // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
+    productoJsonString = JSON.stringify(finalJSON, null, 2);
 
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
     var client = getXMLHttpRequest();
     client.open('POST', './backend/create.php', true);
     client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
+
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
             console.log(client.responseText);
         }
     };
+
+    // SE ENVÍA EL JSON VALIDADO AL SERVIDOR
     client.send(productoJsonString);
 }
 
@@ -170,4 +181,78 @@ function buscarProducto(e) {
         }
     };
     client.send("searchProduct=" + encodeURIComponent(searchProduct));
+}
+
+function validarNombre(){
+    var nombre = document.getElementById("name");
+    if(nombre.value == ''){
+        alert("El campo nombre es obligatorio");
+    }
+    else if (nombre.value.length > 100){
+        alert("El nombre debe tener como maximo 100 caracteres");
+    }
+}
+
+
+function validarJson(finalJSON) {
+    // Validar nombre
+    if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
+        alert('Ingresa un nombre');
+        return false;
+    }
+    if (finalJSON.nombre.length > 100) {
+        alert('El nombre debe tener máximo 100 caracteres');
+        return false;
+    }
+
+    // Validar marca
+    const marcasValidas = ['La Roche-Posay', 'KIEHLS', 'Rare Beauty', 'Neutrogena', 'The Ordinary','Maybelline', 'YSL','ISDIN', 'CLINIQUE', 'Drunk Elephant', 'Maybelline'];
+    if (!finalJSON.marca || finalJSON.marca.length == 0) {
+        alert('Selecciona una marca');
+        return false;
+    }
+    if (!marcasValidas.includes(finalJSON.marca)) {
+        alert('Marca no válida, selecciona una válida (La Roche-Posay, KIEHLS, Rare Beauty, Neutrogena, The Ordinary,Maybelline, YSL,ISDIN, CLINIQUE, Drunk Elephant, Maybelline)');
+        return false;
+    }
+
+    // Validar modelo
+    if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
+        alert('Ingresa un modelo');
+        return false;
+    }
+    if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
+        alert('El modelo debe ser alfanumérico y menor a 25 caracteres');
+        return false;
+    }
+
+    // Validar precio
+    if (!finalJSON.precio || finalJSON.precio.length == 0) {
+        alert('Ingresa el precio');
+        return false;
+    }
+    if (finalJSON.precio < 99.99) {
+        alert('El precio debe ser mayor a $99.99');
+        return false;
+    }
+
+    // Validar detalles
+    if (finalJSON.detalles && finalJSON.detalles.length > 250) {
+        alert('Los detalles deben tener máximo 250 caracteres');
+        return false;
+    }
+
+    // Validar unidades
+    if (finalJSON.unidades == null || finalJSON.unidades < 0) {
+        alert('Cantidad mínima de unidades es 0');
+        return false;
+    }
+
+    // Validar imagen
+    if (!finalJSON.imagen || finalJSON.imagen.length == 0) {
+        finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
+    }
+
+    // Si pasa todas las validaciones
+    return true;
 }
