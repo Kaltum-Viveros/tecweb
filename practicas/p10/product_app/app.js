@@ -6,7 +6,7 @@ var baseJSON = {
     "marca": "NA",
     "detalles": "NA",
     "imagen": "img/default.png"
-  };
+};
 
 // FUNCIÓN CALLBACK DE BOTÓN "Buscar"
 function buscarID(e) {
@@ -119,4 +119,55 @@ function init() {
      */
     var JsonString = JSON.stringify(baseJSON,null,2);
     document.getElementById("description").value = JsonString;
+}
+
+function buscarProducto(e) {
+    e.preventDefault();
+
+    // SE OBTIENE EL TÉRMINO DE BÚSQUEDA
+    var searchProduct = document.getElementById('search').value;
+
+    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+    var client = getXMLHttpRequest();
+    client.open('POST', './backend/read.php', true);
+    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    client.onreadystatechange = function () {
+        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
+        if (client.readyState == 4 && client.status == 200) {
+            console.log('[CLIENTE]\n' + client.responseText);
+
+            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+            let productos = JSON.parse(client.responseText);
+
+            // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
+            if (productos.length > 0) {
+                // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
+                let template = '';
+                productos.forEach(producto => {
+                    let descripcion = '';
+                    descripcion += `<li>precio: ${producto.precio !== undefined ? producto.precio : 'No disponible'}</li>`;
+                    descripcion += `<li>unidades: ${producto.unidades !== undefined ? producto.unidades : 'No disponible'}</li>`;
+                    descripcion += `<li>modelo: ${producto.modelo !== undefined ? producto.modelo : 'No disponible'}</li>`;
+                    descripcion += `<li>marca: ${producto.marca !== undefined ? producto.marca : 'No disponible'}</li>`;
+                    descripcion += `<li>detalles: ${producto.detalles !== undefined ? producto.detalles : 'No disponible'}</li>`;
+
+                    // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
+                    template += `
+                        <tr>
+                            <td>${producto.id !== undefined ? producto.id : 'No disponible'}</td>
+                            <td>${producto.nombre !== undefined ? producto.nombre : 'No disponible'}</td>
+                            <td><ul>${descripcion}</ul></td>
+                        </tr>
+                    `;
+                });
+
+                // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
+                document.getElementById("productos").innerHTML = template;
+            } else {
+                // Manejar el caso cuando no hay productos
+                document.getElementById("productos").innerHTML = '<tr><td colspan="3">No se encontraron productos.</td></tr>';
+            }
+        }
+    };
+    client.send("searchProduct=" + encodeURIComponent(searchProduct));
 }
