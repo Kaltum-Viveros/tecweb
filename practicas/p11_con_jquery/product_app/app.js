@@ -58,7 +58,7 @@ $(document).ready(function() {
                                     <td>${product.nombre}</td>
                                     <td><ul>${descripcion}</ul></td>
                                     <td>
-                                        <button class="product-delete btn btn-danger" onclick="eliminarproduct()">
+                                        <button class="product-delete btn btn-danger" data-id="${producto.id}">
                                             Eliminar
                                         </button>
                                     </td>
@@ -80,7 +80,7 @@ $(document).ready(function() {
                     }
                 }
             });
-        }  
+        }
     });
 
     $('#product-form').submit(function(e) {
@@ -144,7 +144,7 @@ $(document).ready(function() {
                                 <td>${producto.nombre}</td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
-                                    <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
+                                    <button class="product-delete btn btn-danger">
                                         Eliminar
                                     </button>
                                 </td>
@@ -157,7 +157,30 @@ $(document).ready(function() {
         });
     }
 
+    $(document).on('click', '.product-delete', function() {
+        if( confirm("De verdad deseas eliinar el Producto") ) { // SE PREGUNTA SI SE DESEA ELIMINAR EL PRODUCTO
+            var id = event.target.parentElement.parentElement.getAttribute("productId"); // SE OBTIENE EL ID DEL PRODUCTO A ELIMINAR 
+            
+            $.ajax({
+                url: './backend/product-delete.php',
+                type: 'GET',
+                data: {id}, // SE ENVIA EL ID DEL PRODUCTO A ELIMINAR
 
-    
+                success: function(response) {
+                    let respuesta = JSON.parse(response); // SE OBTIENE LA RESPUESTA DE LA PETICION AJAX 
+                    let template_bar = ''; // SE CREA UNA VARIABLE PARA ALMACENAR EL HTML DE LA BARRA DE BUSQUEDA
+                    template_bar += `
+                                <li style="list-style: none;">status: ${respuesta.status}</li>
+                                <li style="list-style: none;">message: ${respuesta.message}</li>
+                            `;
+
+                    document.getElementById("product-result").className = "card my-4 d-block"; // SE MUESTRA
+                    document.getElementById("container").innerHTML = template_bar; // SE MUESTRA LA RESPUESTA DE LA PETICION AJAX
+
+                    listarProductos();
+                }
+            })
+        }
+    });
 
 });
