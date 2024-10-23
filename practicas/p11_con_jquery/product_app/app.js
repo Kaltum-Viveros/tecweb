@@ -28,59 +28,63 @@ $(document).ready(function() {
     listarProductos(); // SE LISTAN LOS PRODUCTOS AL CARGAR LA PAGINA 
 
     $('#search').keyup(function(e) {
-        if($('#search').val()){ // SI EL CAMPO DE BUSQUEDA NO ESTA VACIO SE REALIZA LA BUSQUEDA
-        
-            let search = $('#search').val(); 
-            $.ajax({  // SE HACE LA PETICION AJAX PARA BUSCAR LOS PRODUCTOS POR NOMBRE O DESCRIPCION 
-                url: './backend/product-search.php', 
-                type: 'GET',
-                data : {search}, 
+        e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
 
-                success: function(response) {    // SE OBTIENE LA RESPUESTA DE LA PETICION AJAX
-                    let products = JSON.parse(response);
+        // Obtener el valor de búsqueda usando jQuery
+        var search = $('#search').val(); // Cambia 'searchInput' por el ID correcto del campo de entrada
 
-                    if(Object.keys(products).length > 0) { // SI SE ENCUENTRAN PRODUCTOS SE MUESTRAN EN LA TABLA
-                        let template = ''; // SE CREA UNA VARIABLE PARA ALMACENAR EL HTML DE LA TABLA
-                        let template_bar = ''; // SE CREA UNA VARIABLE PARA ALMACENAR EL HTML DE LA BARRA DE BUSQUEDA
-        
-                        products.forEach(product => {
-                            
-                            let descripcion = '';
-                            descripcion += '<li>precio: '+product.precio+'</li>';
-                            descripcion += '<li>unidades: '+product.unidades+'</li>';
-                            descripcion += '<li>modelo: '+product.modelo+'</li>';
-                            descripcion += '<li>marca: '+product.marca+'</li>';
-                            descripcion += '<li>detalles: '+product.detalles+'</li>';
-                        
-                            template += `
-                                <tr productId="${product.id}">
-                                    <td>${product.id}</td>
-                                    <td>${product.nombre}</td>
-                                    <td><ul>${descripcion}</ul></td>
-                                    <td>
-                                        <button class="product-delete btn btn-danger" data-id="${producto.id}">
-                                            Eliminar
-                                        </button>
-                                    </td>
-                                </tr>
-                            `;
-        
-                            template_bar += `<li>${product.nombre}</il>`;
-                        });
-                        document.getElementById("product-result").className = "card my-4 d-block";
-                        document.getElementById("container").innerHTML = template_bar;  // SE MUESTRA LA BARRA DE BUSQUEDA CON LOS PRODUCTOS ENCONTRADOS
-                        document.getElementById("products").innerHTML = template; // SE MUESTRA LA TABLA CON LOS PRODUCTOS ENCONTRADOS
-                    }
-                    if(Object.keys(products).length == 0) { // SI NO SE ENCUENTRAN PRODUCTOS SE MUESTRA UN MENSAJE
-                        let template_bar = ''; // SE CREA UNA VARIABLE PARA ALMACENAR EL HTML DE LA BARRA DE BUSQUEDA
-                        template_bar += `<li>No se encontraron productos</il>`; // SE AGREGA EL MENSAJE A LA VARIABLE
-                        document.getElementById("product-result").className = "card my-4 d-block"; 
-                        document.getElementById("container").innerHTML = template_bar;
-                        document.getElementById("products").innerHTML = ''; //para limpiar la tabla
-                    }
+        // Realizar la solicitud AJAX
+        $.ajax({
+            url: './backend/product-search.php',
+            type: 'GET',
+            data: { search: search },
+            success: function(response) {
+                let productos = JSON.parse(response);
+
+                if (Object.keys(productos).length > 0) {
+                    let template = '';
+                    let template_bar = '';
+
+                    productos.forEach(producto => {
+                        let descripcion = `
+                            <li>precio: ${producto.precio}</li>
+                            <li>unidades: ${producto.unidades}</li>
+                            <li>modelo: ${producto.modelo}</li>
+                            <li>marca: ${producto.marca}</li>
+                            <li>detalles: ${producto.detalles}</li>
+                        `;
+
+                        template += `
+                            <tr productId="${producto.id}">
+                                <td>${producto.id}</td>
+                                <td>${producto.nombre}</td>
+                                <td><ul>${descripcion}</ul></td>
+                                <td>
+                                    <button class="product-delete btn btn-danger" data-id="${producto.id}">
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+
+                        template_bar += `<li>${producto.nombre}</li>`;
+                    });
+
+                    // Actualizar el DOM con los resultados
+                    document.getElementById("product-result").className = "card my-4 d-block";
+                    document.getElementById("container").innerHTML = template_bar;
+                    document.getElementById("products").innerHTML = template;
+                } else {
+                    // Manejar el caso en que no se encuentran productos
+                    document.getElementById("product-result").className = "card my-4 d-none"; // Ocultar el contenedor
+                    document.getElementById("container").innerHTML = ""; // Limpiar la barra de estado
+                    document.getElementById("products").innerHTML = ""; // Limpiar la tabla de productos
                 }
-            });
-        }
+            },
+            error: function() {
+                alert("Hubo un error al realizar la búsqueda.");
+            }
+        });
     });
 
     $('#product-form').submit(function(e) {
@@ -175,6 +179,10 @@ $(document).ready(function() {
                 document.getElementById("container").innerHTML = template_bar;
 
                 listarProductos();
+                init();
+                edit = false; // SE REINICIA LA VARIABLE DE EDICION
+                $('#submit-button').text('Agregar Producto'); // SE CAMBIA EL TEXTO DEL BOTON A AGREGAR PRODUCTO
+                $('#name').val(''); // SE LIMPIA EL CAMPO DE NOMBRE
             }
         });
     });
@@ -201,7 +209,9 @@ $(document).ready(function() {
                         template += `
                             <tr productId="${producto.id}">
                                 <td>${producto.id}</td>
-                                <td>${producto.nombre}</td>
+                                <td>
+                                    <a href="#" class="product-item">${producto.nombre}</a>
+                                </td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
                                     <button class="product-delete btn btn-danger">
@@ -243,4 +253,22 @@ $(document).ready(function() {
         }
     });
 
+    $(document).on('click', '.product-item', function() {
+        let id = $(this)[0].parentElement.parentElement.getAttribute('productid');
+        //console.log(id);
+        $.post('./backend/product-single.php', {id}, function(response){
+            const product = JSON.parse(response);
+            $('#name').val(product[0].nombre);
+            let productWithoutNameAndId = {...product[0]};
+            delete productWithoutNameAndId.nombre;
+            delete productWithoutNameAndId.id;
+            delete productWithoutNameAndId.eliminado;
+
+            $('#description').val(JSON.stringify(productWithoutNameAndId, null, 4));
+            edit = true;
+
+            $('#submit-button').text('Editar Producto');
+
+        })
+    });
 });
