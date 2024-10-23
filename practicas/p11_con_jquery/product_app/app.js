@@ -75,10 +75,13 @@ $(document).ready(function() {
                     document.getElementById("container").innerHTML = template_bar;
                     document.getElementById("products").innerHTML = template;
                 } else {
-                    // Manejar el caso en que no se encuentran productos
-                    document.getElementById("product-result").className = "card my-4 d-none"; // Ocultar el contenedor
-                    document.getElementById("container").innerHTML = ""; // Limpiar la barra de estado
-                    document.getElementById("products").innerHTML = ""; // Limpiar la tabla de productos
+                    if(Object.keys(products).length == 0) { // SI NO SE ENCUENTRAN PRODUCTOS SE MUESTRA UN MENSAJE
+                        let template_bar = ''; // SE CREA UNA VARIABLE PARA ALMACENAR EL HTML DE LA BARRA DE BUSQUEDA
+                        template_bar += `<li>No se encontraron productos</il>`; // SE AGREGA EL MENSAJE A LA VARIABLE
+                        document.getElementById("product-result").className = "card my-4 d-block"; 
+                        document.getElementById("container").innerHTML = template_bar;
+                        document.getElementById("products").innerHTML = ''; //para limpiar la tabla
+                    }
                 }
             },
             error: function() {
