@@ -8,6 +8,8 @@ var baseJSON = {
     "imagen": "img/default.png"
 };
 
+var edit = false; // Inicialmente se asume que no se está editando ningún producto
+
 function init() {
     /**
      * Convierte el JSON a string para poder mostrarlo
