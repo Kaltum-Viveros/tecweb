@@ -95,9 +95,69 @@ $(document).ready(function() {
         // SE OBTIENE EL STRING DEL JSON FINAL
         productoJsonString = JSON.stringify(finalJSON,null,2);
 
+        // Validar nombre
+        if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
+            alert('Ingresa un nombre');
+            return false;
+        }
+        if (finalJSON.nombre.length > 100) {
+            alert('El nombre debe tener máximo 100 caracteres');
+            return false;
+        }
+
+        // Validar marca
+        const marcasValidas = ['La Roche-Posay', 'KIEHLS', 'Rare Beauty', 'Neutrogena', 'The Ordinary','Maybelline', 'YSL','ISDIN', 'CLINIQUE', 'Drunk Elephant', 'Maybelline'];
+        if (!finalJSON.marca || finalJSON.marca.length == 0) {
+            alert('Selecciona una marca');
+            return false;
+        }
+        if (!marcasValidas.includes(finalJSON.marca)) {
+            alert('Marca no válida, selecciona una válida (La Roche-Posay, KIEHLS, Rare Beauty, Neutrogena, The Ordinary,Maybelline, YSL,ISDIN, CLINIQUE, Drunk Elephant, Maybelline)');
+            return false;
+        }
+
+        // Validar modelo
+        if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
+            alert('Ingresa un modelo');
+            return false;
+        }
+        if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
+            alert('El modelo debe ser alfanumérico y menor a 25 caracteres');
+            return false;
+        }
+
+        // Validar precio
+        if (!finalJSON.precio || finalJSON.precio.length == 0) {
+            alert('Ingresa el precio');
+            return false;
+        }
+        if (finalJSON.precio < 99.99) {
+            alert('El precio debe ser mayor a $99.99');
+            return false;
+        }
+
+        // Validar detalles
+        if (finalJSON.detalles && finalJSON.detalles.length > 250) {
+            alert('Los detalles deben tener máximo 250 caracteres');
+            return false;
+        }
+
+        // Validar unidades
+        if (finalJSON.unidades == null || finalJSON.unidades < 0) {
+            alert('Cantidad mínima de unidades es 0');
+            return false;
+        }
+
+        // Validar imagen
+        if (!finalJSON.imagen || finalJSON.imagen.length == 0) {
+            finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
+        }
+
+        let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php'; // SE ASIGNA LA URL DEPENDIENDO SI SE ESTA AGREGANDO O EDITANDO UN PRODUCTO
+
         // SE ENVIA EL JSON A TRAVES DE AJAX
         $.ajax({
-            url: './backend/product-add.php',
+            url: url, //'./backend/product-add.php',
             type: 'POST',
             contentType: 'application/json', // SE ESPECIFICA EL TIPO DE CONTENIDO 
             data: JSON.stringify(finalJSON), // SE ENVIA EL JSON
