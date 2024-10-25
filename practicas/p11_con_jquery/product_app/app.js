@@ -107,59 +107,99 @@ $(document).ready(function() {
         if (edit) {
             finalJSON['id'] = selectedProductId; // Aquí guardas el id del producto seleccionado para editar
         }
-        // SE OBTIENE EL STRING DEL JSON FINAL
-        //productoJsonString = JSON.stringify(finalJSON,null,2);
 
         // Validar nombre
         if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
-            alert('Ingresa un nombre');
+            let template_bar = '';
+            template_bar += `<li>Ingresa un nombre</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
             return false;
         }
+
         if (finalJSON.nombre.length > 100) {
-            alert('El nombre debe tener máximo 100 caracteres');
+            let template_bar = '';
+            template_bar += `<li>El nombre debe tener máximo 100 caracteres</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
             return false;
         }
 
         // Validar marca
         const marcasValidas = ['La Roche-Posay', 'KIEHLS', 'Rare Beauty', 'Neutrogena', 'The Ordinary','Maybelline', 'YSL','ISDIN', 'CLINIQUE', 'Drunk Elephant', 'Maybelline'];
         if (!finalJSON.marca || finalJSON.marca.length == 0) {
-            alert('Selecciona una marca');
+            let template_bar = '';
+            template_bar += `<li>Selecciona una marca</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
             return false;
         }
         if (!marcasValidas.includes(finalJSON.marca)) {
-            alert('Marca no válida, selecciona una válida (La Roche-Posay, KIEHLS, Rare Beauty, Neutrogena, The Ordinary,Maybelline, YSL,ISDIN, CLINIQUE, Drunk Elephant, Maybelline)');
+            let template_bar = '';
+            template_bar += `<li>Marca no válida, selecciona una válida: ${marcasValidas.join(', ')}</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block"; 
+            document.getElementById("container").innerHTML = template_bar;
+            
             return false;
         }
 
         // Validar modelo
         if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
-            alert('Ingresa un modelo');
+            let template_bar = '';
+            template_bar += `<li>Ingresa un modelo</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
             return false;
         }
         if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
-            alert('El modelo debe ser alfanumérico y menor a 25 caracteres');
-            return false;
+            let template_bar = '';
+            template_bar += `<li>El modelo debe ser alfanumérico y menor a 25 caracteres</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
+            return false; 
         }
 
         // Validar precio
         if (!finalJSON.precio || finalJSON.precio.length == 0) {
-            alert('Ingresa el precio');
-            return false;
+            let template_bar = '';
+            template_bar += `<li>Ingresa el precio</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
+            return false; 
         }
+
         if (finalJSON.precio < 99.99) {
-            alert('El precio debe ser mayor a $99.99');
+            let template_bar = '';
+            template_bar += `<li>El precio debe ser mayor a $99.99</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
             return false;
         }
 
         // Validar detalles
         if (finalJSON.detalles && finalJSON.detalles.length > 250) {
-            alert('Los detalles deben tener máximo 250 caracteres');
+            let template_bar = '';
+            template_bar += `<li>Los detalles deben tener máximo 250 caracteres</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
             return false;
         }
 
         // Validar unidades
         if (finalJSON.unidades == null || finalJSON.unidades < 0) {
-            alert('Cantidad mínima de unidades es 0');
+            let template_bar = '';
+            template_bar += `<li>Cantidad mínima de unidades es 0</li>`;
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+
             return false;
         }
 
@@ -266,15 +306,14 @@ $(document).ready(function() {
 
     $(document).on('click', '.product-item', function() {
         selectedProductId = $(this)[0].parentElement.parentElement.getAttribute('productid'); // SE OBTIENE EL ID DEL PRODUCTO SELECCIONADO
-        //console.log(id);
+
         $.post('./backend/product-single.php', {id: selectedProductId}, function(response){ // SE OBTIENE EL PRODUCTO SELECCIONADO
             const product = JSON.parse(response);
             $('#name').val(product[0].nombre); // SE CARGA EL NOMBRE DEL PRODUCTO EN EL CAMPO DE NOMBRE
             let productWithoutId = {...product[0]}; // SE COPIA EL PRODUCTO PARA ELIMINAR EL ID Y ELIMINADO 
-            delete productWithoutId.id; 
-            //hacer que no se muestre el nombre eb el formulario
-            delete productWithoutId.nombre;
-            delete productWithoutId.eliminado; // SE ELIMINA EL ATRIBUTO para que no se muestre en el formulario
+            delete productWithoutId.id; // SE ELIMINA EL ID para que no se muestre en el formulario
+            delete productWithoutId.nombre; //SE ELIMINA EL NOMBRE PARA QUE NO SE MUESTRE EN EL FORMULARIO
+            delete productWithoutId.eliminado; // SE ELIMINA EL ATRIBUTO "ELIMINADO" PARA QUE NO SE MUESTRE EN EL FORMULARIO
 
             $('#description').val(JSON.stringify(productWithoutId, null, 4)); // SE CARGA EL JSON DEL PRODUCTO EN EL CAMPO DE DESCRIPCION
             edit = true;
