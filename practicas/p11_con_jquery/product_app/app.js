@@ -9,6 +9,7 @@ var baseJSON = {
 };
 
 var edit = false; // Inicialmente se asume que no se está editando ningún producto
+var selectedProductId; // Declarar la variable al inicio
 
 function init() {
     /**
@@ -103,8 +104,11 @@ $(document).ready(function() {
         var finalJSON = JSON.parse(productoJsonString);
         // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
         finalJSON['nombre'] = document.getElementById('name').value;
+        if (edit) {
+            finalJSON['id'] = selectedProductId; // Aquí guardas el id del producto seleccionado para editar
+        }
         // SE OBTIENE EL STRING DEL JSON FINAL
-        productoJsonString = JSON.stringify(finalJSON,null,2);
+        //productoJsonString = JSON.stringify(finalJSON,null,2);
 
         // Validar nombre
         if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
@@ -261,17 +265,16 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.product-item', function() {
-        let id = $(this)[0].parentElement.parentElement.getAttribute('productid');
+        selectedProductId = $(this)[0].parentElement.parentElement.getAttribute('productid'); // SE OBTIENE EL ID DEL PRODUCTO SELECCIONADO
         //console.log(id);
-        $.post('./backend/product-single.php', {id}, function(response){ // SE OBTIENE EL PRODUCTO SELECCIONADO
+        $.post('./backend/product-single.php', {id: selectedProductId}, function(response){ // SE OBTIENE EL PRODUCTO SELECCIONADO
             const product = JSON.parse(response);
             $('#name').val(product[0].nombre); // SE CARGA EL NOMBRE DEL PRODUCTO EN EL CAMPO DE NOMBRE
-            let productWithoutNameAndId = {...product[0]}; // SE CREA UNA COPIA DEL PRODUCTO SIN EL NOMBRE Y EL ID
-            delete productWithoutNameAndId.nombre; 
-            delete productWithoutNameAndId.id; 
-            delete productWithoutNameAndId.eliminado; // SE ELIMINA EL ATRIBUTO para que no se muestre en el formulario
+            let productWithoutId = {...product[0]}; // SE COPIA EL PRODUCTO PARA ELIMINAR EL ID Y ELIMINADO 
+            delete productWithoutId.id; 
+            delete productWithoutId.eliminado; // SE ELIMINA EL ATRIBUTO para que no se muestre en el formulario
 
-            $('#description').val(JSON.stringify(productWithoutNameAndId, null, 4));
+            $('#description').val(JSON.stringify(productWithoutId, null, 4)); // SE CARGA EL JSON DEL PRODUCTO EN EL CAMPO DE DESCRIPCION
             edit = true;
 
             $('#submit-button').text('Editar Producto');

@@ -12,11 +12,10 @@ if (!empty($producto)) { // SE VERIFICA QUE EL JSON NO ESTÉ VACÍO
     // SE TRANSFORMA EL STRING DEL JSON A OBJETO
     $jsonOBJ = json_decode($producto);
 
-    // Verificar que el nombre del producto existe en el JSON
-    if (isset($jsonOBJ->nombre)) {
+    if (isset($jsonOBJ->id)) {
         // SE ASUME QUE LOS DATOS YA FUERON VALIDADOS ANTES DE ENVIARSE
-        $nombre = $jsonOBJ->nombre;
-        $sql = "SELECT * FROM productos WHERE nombre = '{$nombre}' AND eliminado = 0";
+        $id = $jsonOBJ->id; // SE OBTIENE EL ID DEL PRODUCTO
+        $sql = "SELECT * FROM productos WHERE id = '{$id}' AND eliminado = 0";
         $result = $conexion->query($sql);
 
         // Verificar si existe el producto con el nombre proporcionado
@@ -24,13 +23,14 @@ if (!empty($producto)) { // SE VERIFICA QUE EL JSON NO ESTÉ VACÍO
             // SE PREPARA EL UPDATE
             $conexion->set_charset("utf8"); // SE CAMBIA EL CHARSET A UTF-8
             $sql = "UPDATE productos SET
+                        nombre = '{$jsonOBJ->nombre}',
                         marca = '{$jsonOBJ->marca}',
                         modelo = '{$jsonOBJ->modelo}',
                         precio = {$jsonOBJ->precio},
                         detalles = '{$jsonOBJ->detalles}',
                         unidades = {$jsonOBJ->unidades},
                         imagen = '{$jsonOBJ->imagen}'
-                    WHERE nombre = '{$nombre}' AND eliminado = 0";
+                    WHERE id = '{$id}' AND eliminado = 0";
 
             // Ejecutar la consulta de actualización
             if ($conexion->query($sql)) {
@@ -47,7 +47,7 @@ if (!empty($producto)) { // SE VERIFICA QUE EL JSON NO ESTÉ VACÍO
         $result->free();
     } else {
         // Error si no se envió el nombre
-        $data['message'] = "El nombre del producto no fue proporcionado en el JSON.";
+        $data['message'] = "El ID del producto no fue proporcionado en el JSON.";
     }
 
     // Cerrar la conexión
