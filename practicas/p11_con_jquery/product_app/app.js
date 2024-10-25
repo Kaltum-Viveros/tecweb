@@ -263,13 +263,13 @@ $(document).ready(function() {
     $(document).on('click', '.product-item', function() {
         let id = $(this)[0].parentElement.parentElement.getAttribute('productid');
         //console.log(id);
-        $.post('./backend/product-single.php', {id}, function(response){
+        $.post('./backend/product-single.php', {id}, function(response){ // SE OBTIENE EL PRODUCTO SELECCIONADO
             const product = JSON.parse(response);
-            $('#name').val(product[0].nombre);
-            let productWithoutNameAndId = {...product[0]};
-            delete productWithoutNameAndId.nombre;
-            delete productWithoutNameAndId.id;
-            delete productWithoutNameAndId.eliminado;
+            $('#name').val(product[0].nombre); // SE CARGA EL NOMBRE DEL PRODUCTO EN EL CAMPO DE NOMBRE
+            let productWithoutNameAndId = {...product[0]}; // SE CREA UNA COPIA DEL PRODUCTO SIN EL NOMBRE Y EL ID
+            delete productWithoutNameAndId.nombre; 
+            delete productWithoutNameAndId.id; 
+            delete productWithoutNameAndId.eliminado; // SE ELIMINA EL ATRIBUTO para que no se muestre en el formulario
 
             $('#description').val(JSON.stringify(productWithoutNameAndId, null, 4));
             edit = true;
@@ -277,5 +277,5 @@ $(document).ready(function() {
             $('#submit-button').text('Editar Producto');
 
         })
-    });
+    }); //esta funcion se encarga de cargar los datos del producto seleccionado en el formulario de agregar producto para poder editarlos 
 });

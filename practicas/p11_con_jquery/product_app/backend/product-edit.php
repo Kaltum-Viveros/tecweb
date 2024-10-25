@@ -8,7 +8,7 @@ $data = array(
     'message' => 'No se encontró el producto o ocurrió un error'
 );
 
-if (!empty($producto)) {
+if (!empty($producto)) { // SE VERIFICA QUE EL JSON NO ESTÉ VACÍO 
     // SE TRANSFORMA EL STRING DEL JSON A OBJETO
     $jsonOBJ = json_decode($producto);
 
@@ -22,7 +22,7 @@ if (!empty($producto)) {
         // Verificar si existe el producto con el nombre proporcionado
         if ($result->num_rows > 0) {
             // SE PREPARA EL UPDATE
-            $conexion->set_charset("utf8");
+            $conexion->set_charset("utf8"); // SE CAMBIA EL CHARSET A UTF-8
             $sql = "UPDATE productos SET
                         marca = '{$jsonOBJ->marca}',
                         modelo = '{$jsonOBJ->modelo}',
