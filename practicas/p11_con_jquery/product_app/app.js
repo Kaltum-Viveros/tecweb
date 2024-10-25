@@ -76,16 +76,16 @@ $(document).ready(function() {
                     });
 
                     // Actualizar el DOM con los resultados
-                    document.getElementById("product-result").className = "card my-4 d-block";
+                    document.getElementById("product-result").className = "card my-4 d-block"; // SE MUESTRA LA BARRA DE BUSQUEDA 
                     document.getElementById("container").innerHTML = template_bar;
                     document.getElementById("products").innerHTML = template;
                 } else {
                     if(Object.keys(products).length == 0) { // SI NO SE ENCUENTRAN PRODUCTOS SE MUESTRA UN MENSAJE
                         let template_bar = ''; // SE CREA UNA VARIABLE PARA ALMACENAR EL HTML DE LA BARRA DE BUSQUEDA
                         template_bar += `<li>No se encontraron productos</il>`; // SE AGREGA EL MENSAJE A LA VARIABLE
-                        document.getElementById("product-result").className = "card my-4 d-block"; 
-                        document.getElementById("container").innerHTML = template_bar;
-                        document.getElementById("products").innerHTML = ''; //para limpiar la tabla
+                        document.getElementById("product-result").className = "card my-4 d-block"; // SE MUESTRA LA BARRA DE BUSQUEDA 
+                        document.getElementById("container").innerHTML = template_bar; // SE MUESTRA EL MENSAJE DE NO ENCONTRADO EN LA BARRA DE BUSQUEDA
+                        document.getElementById("products").innerHTML = ''; // SE LIMPIA LA LISTA DE PRODUCTOS
                     }
                 }
             },
@@ -272,6 +272,8 @@ $(document).ready(function() {
             $('#name').val(product[0].nombre); // SE CARGA EL NOMBRE DEL PRODUCTO EN EL CAMPO DE NOMBRE
             let productWithoutId = {...product[0]}; // SE COPIA EL PRODUCTO PARA ELIMINAR EL ID Y ELIMINADO 
             delete productWithoutId.id; 
+            //hacer que no se muestre el nombre eb el formulario
+            delete productWithoutId.nombre;
             delete productWithoutId.eliminado; // SE ELIMINA EL ATRIBUTO para que no se muestre en el formulario
 
             $('#description').val(JSON.stringify(productWithoutId, null, 4)); // SE CARGA EL JSON DEL PRODUCTO EN EL CAMPO DE DESCRIPCION
