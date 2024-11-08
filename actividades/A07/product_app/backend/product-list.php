@@ -1,6 +1,5 @@
 <?php
-    include_once __DIR__.'/database.php';
-
+    /*
     // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
     $data = array();
 
@@ -25,4 +24,11 @@
     
     // SE HACE LA CONVERSIÓN DE ARRAY A JSON
     echo json_encode($data, JSON_PRETTY_PRINT);
+    */
+
+    use TECWEB\MYAPI\Products as Products; //se usa la clase Products
+    include_once __DIR__.'/myapi/Products.php'; //se incluye el archivo Products.php
+    $prod = new Products ('marketzone'); //se crea un objeto de la clase Products
+    $prod -> list(); //se llama al metodo list
+    echo $prod -> getData(); //se imprime el resultado
 ?>

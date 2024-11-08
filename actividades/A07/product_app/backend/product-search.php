@@ -1,6 +1,7 @@
 <?php
+    /*
     include_once __DIR__.'/database.php';
-
+    
     // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
     $data = array();
     // SE VERIFICA HABER RECIBIDO EL ID
@@ -29,4 +30,11 @@
     
     // SE HACE LA CONVERSIÓN DE ARRAY A JSON
     echo json_encode($data, JSON_PRETTY_PRINT);
+    */
+
+    use TECWEB\MYAPI\Products as Products;
+    include_once __DIR__.'/myapi/Products.php';
+    $prod = new Products ('marketzone');
+    $prod -> search($_GET['search']); 
+    echo $prod -> getData();
 ?>

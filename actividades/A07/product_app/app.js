@@ -42,6 +42,7 @@ $(document).ready(function() {
             type: 'GET',
             data: { search: search },
             success: function(response) {
+                console.log(response);
                 let productos = JSON.parse(response);
 
                 if (Object.keys(productos).length > 0) {
@@ -244,6 +245,7 @@ $(document).ready(function() {
             type: 'GET',
             
             success: function(response){
+                
                 let productos = JSON.parse(response);  
                 
                 if(Object.keys(productos).length > 0) {
@@ -307,7 +309,8 @@ $(document).ready(function() {
     $(document).on('click', '.product-item', function() {
         selectedProductId = $(this)[0].parentElement.parentElement.getAttribute('productid'); // SE OBTIENE EL ID DEL PRODUCTO SELECCIONADO
 
-        $.post('./backend/product-single.php', {id: selectedProductId}, function(response){ // SE OBTIENE EL PRODUCTO SELECCIONADO
+        $.post('./backend/product-single.php', {id: selectedProductId}, function(response){ 
+            // SE OBTIENE EL PRODUCTO SELECCIONADO
             const product = JSON.parse(response);
             $('#name').val(product[0].nombre); // SE CARGA EL NOMBRE DEL PRODUCTO EN EL CAMPO DE NOMBRE
             let productWithoutId = {...product[0]}; // SE COPIA EL PRODUCTO PARA ELIMINAR EL ID Y ELIMINADO 
