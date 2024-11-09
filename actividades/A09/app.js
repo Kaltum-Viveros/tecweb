@@ -11,18 +11,6 @@ var baseJSON = {
 var edit = false; // Inicialmente se asume que no se está editando ningún producto
 var selectedProductId; // Declarar la variable al inicio
 
-//function init() {
-    /**
-     * Convierte el JSON a string para poder mostrarlo
-     * ver: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON
-     */
-    //var JsonString = JSON.stringify(baseJSON,null,2);
-    //document.getElementById("description").value = JsonString;
-
-    // SE LISTAN TODOS LOS PRODUCTOS
-    //listarProductos();
-//}
-
 $(document).ready(function() {
 
     console.log("jQuery ready");
