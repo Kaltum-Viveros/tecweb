@@ -330,7 +330,7 @@ $(document).ready(function() {
 
 function validarNombre(){
     var nombre = document.getElementById("form-name");
-    if(nombre.value == ''){
+    if(!nombre.value){
         let template_bar = '';
         template_bar += `<li>El campo nombre es obligatorio</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
@@ -347,7 +347,7 @@ function validarNombre(){
 
 function validarMarca(){
     var marca = document.getElementById("form-brand");
-    if (marca.value == ""){
+    if (!marca.value){
         let template_bar = '';
         template_bar += `<li>El campo marca es obligatorio</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
@@ -357,7 +357,7 @@ function validarMarca(){
 
 function validarModelo(){
     var modelo = document.getElementById("form-model");
-    if (modelo.value == ''){
+    if (!modelo.value){
         let template_bar = '';
         template_bar += `<li>Ingresa un modelo</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";            
@@ -367,7 +367,7 @@ function validarModelo(){
 
 function validarPrecio(){
     var precio = document.getElementById("form-price");
-    if (precio.value == ''){
+    if (!precio.value){
         let template_bar = '';
         template_bar += `<li>Ingresa el precio</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";            
@@ -394,7 +394,7 @@ function validarDetalles(){
 
 function validarUnidades(){
     var unidades = document.getElementById("form-units");
-    if (unidades.value == ''){
+    if (!unidades.value){
         let template_bar = '';
         template_bar += `<li>El campo unidades es obligatorio</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
@@ -410,7 +410,7 @@ function validarUnidades(){
 
 function validarImagen(){
     var imagen = document.getElementById("form-img");
-    if (imagen.value == ''){
+    if (!imagen.value){
         let template_bar = '';
         template_bar += `<li>Se asignó una imagen por defecto</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
