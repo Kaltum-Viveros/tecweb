@@ -32,9 +32,9 @@
               <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
               <form id="product-form"> <!-- id diferente al video -->
                 <div class="form-group"> 
-                    <input class="form-control" type="text" name="name" id="form-name" onblur="validarNombre();" required placeholder="Nombre:"><br />
+                    <input class="form-control" type="text" name="name" id="form-name" onblur="validarNombre();"  placeholder="Nombre:"><br />
                     <label for="form-brand">Marca:</label>
-                        <select class="form-control" name="marca" id="form-brand" onblur="validarMarca();" required style="color: #818D98;">
+                        <select class="form-control" name="marca" id="form-brand" onblur="validarMarca();"  style="color: #818D98;">
                             <option value="" disabled selected>Selecciona una marca</option>
                             <option value="The Ordinary">The Ordinary</option>
                             <option value="Drunk Elephant">Drunk Elephant</option>
@@ -47,11 +47,11 @@
                             <option value="La Roche-Posay">La Roche-Posay</option>
                         </select>
                     <br />
-                    <input class="form-control" type="text" name="model" id="form-model" onblur="validarModelo();" required placeholder="Modelo:"><br />
-                    <input class="form-control" type="number" name="price" id="form-price" onblur="validarPrecio();" required placeholder="Precio:"><br />
+                    <input class="form-control" type="text" name="model" id="form-model" onblur="validarModelo();"  placeholder="Modelo:"><br />
+                    <input class="form-control" type="number" name="price" id="form-price" onblur="validarPrecio();"  placeholder="Precio:"><br />
                     <textarea class="form-control" type name="details" rows="4" cols="40" id="form-details" placeholder="Detalles..." onblur="validarDetalles();" ></textarea><br />
-                    <input class="form-control"type="number" name="units" id="form-units" onblur="validarUnidades();" required placeholder="Unidades:"><br />
-                    <input class="form-control" type="text" name="img" id="form-img" onblur="validarImagen();" required placeholder="Imagen:"><br />
+                    <input class="form-control"type="number" name="units" id="form-units" onblur="validarUnidades();"  placeholder="Unidades:"><br />
+                    <input class="form-control" type="text" name="img" id="form-img" onblur="validarImagen();"  placeholder="Imagen:"><br />
                 </div>
                 <input type="hidden" id="productId">
                 <button class="btn btn-primary btn-block text-center" type="submit" id="submit-button">

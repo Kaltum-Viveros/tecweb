@@ -106,12 +106,69 @@ $(document).ready(function() {
 
         // Volver a convertir el objeto actualizado a JSON si es necesario
         productoJsonString = JSON.stringify(yeison, null, 3);
-        console.log(productoJsonString);
 
         var finalJSON = JSON.parse(productoJsonString);
         productoJsonString = JSON.stringify(finalJSON, null, 3);
 
-        console.log(productoJsonString);
+            let errorMessages = []; // Array para acumular los errores
+
+            // Validar nombre
+            if (!finalJSON.nombre) {
+                errorMessages.push('Ingresa un nombre');
+            }else if (finalJSON.nombre.length > 100) {
+                errorMessages.push('El nombre debe tener máximo 100 caracteres');
+            }
+            
+            // Validar marca
+            if (!finalJSON.marca) {
+                errorMessages.push('Selecciona una marca');
+            }
+            
+            // Validar modelo
+            if (!finalJSON.modelo) {
+                errorMessages.push('Ingresa un modelo');
+            }else if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
+                errorMessages.push('El modelo debe ser alfanumérico y menor a 25 caracteres');
+            }
+            
+            // Validar precio
+            if (!finalJSON.precio) {
+                errorMessages.push('Ingresa el precio');
+            } else if (finalJSON.precio < 99.99) {
+                errorMessages.push('El precio debe ser mayor a $99.99');
+            }
+            
+            // Validar detalles
+            if (finalJSON.detalles && finalJSON.detalles.length > 250) {
+                errorMessages.push('Los detalles deben tener máximo 250 caracteres');
+            }
+            
+            // Validar unidades
+            if (!finalJSON.unidades) {
+                errorMessages.push('Ingresa la cantidad de unidades');
+            } else if (finalJSON.unidades < 0) {
+                errorMessages.push('La cantidad mínima de unidades debe ser 0');
+            }
+            
+            // Validar imagen
+            if (!finalJSON.imagen) {
+                finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
+                errorMessages.push('Se asignará una imagen por defecto');
+            }
+            
+            // Si hay errores, mostrar todos
+            if (errorMessages.length > 0) {
+                let template_bar = '';
+                errorMessages.forEach(message => {
+                    template_bar += `<li>${message}</li>`;
+                });
+                template_bar += '';
+                
+                document.getElementById("product-result").className = "card my-4 d-block";
+                document.getElementById("container").innerHTML = template_bar;
+            
+                return false;
+            }            
 
         let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php'; // SE ASIGNA LA URL DEPENDIENDO SI SE ESTA AGREGANDO O EDITANDO UN PRODUCTO
 
@@ -303,7 +360,8 @@ function validarModelo(){
     if (modelo.value == ''){
         let template_bar = '';
         template_bar += `<li>Ingresa un modelo</li>`;
-        document.getElementById("product-result").className = "card my-4 d-block";            document.getElementById("container").innerHTML = template_bar;
+        document.getElementById("product-result").className = "card my-4 d-block";            
+        document.getElementById("container").innerHTML = template_bar;
     }
 }
 
@@ -312,7 +370,8 @@ function validarPrecio(){
     if (precio.value == ''){
         let template_bar = '';
         template_bar += `<li>Ingresa el precio</li>`;
-        document.getElementById("product-result").className = "card my-4 d-block";            document.getElementById("container").innerHTML = template_bar;
+        document.getElementById("product-result").className = "card my-4 d-block";            
+        document.getElementById("container").innerHTML = template_bar;
     }
     else if (precio.value <= 99.99){
         let template_bar = '';
