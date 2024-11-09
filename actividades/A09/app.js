@@ -98,15 +98,32 @@ $(document).ready(function() {
     $('#product-form').submit(function(e) {
         e.preventDefault();
 
-        // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
-        var productoJsonString = document.getElementById('description').value;
-        // SE CONVIERTE EL JSON DE STRING A OBJETO
+        var yeison = {
+            id: $('#productId').val(),
+            nombre: $('#form-name').val(),
+            marca: $('#form-brand').val(),
+            modelo: $('#form-model').val(),
+            precio: $('#form-price').val(),
+            detalles: $('#form-details').val(),
+            unidades: $('#form-units').val(),
+            imagen: $('#form-img').val()
+        };
+
+        // Convertir el objeto a JSON
+        var productoJsonString = JSON.stringify(yeison, null, 3);
+
+        // Si necesitas manipular alguna propiedad en `yeison` despuÃ©s
+        yeison['nombre'] = document.getElementById('form-name').value;
+        yeison['id'] = document.getElementById('productId').value;
+
+        // Volver a convertir el objeto actualizado a JSON si es necesario
+        productoJsonString = JSON.stringify(yeison, null, 3);
+        console.log(productoJsonString);
+
         var finalJSON = JSON.parse(productoJsonString);
-        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-        finalJSON['nombre'] = document.getElementById('name').value;
-        if (edit) {
-            finalJSON['id'] = selectedProductId; // Aquí guardas el id del producto seleccionado para editar
-        }  
+        productoJsonString = JSON.stringify(finalJSON, null, 3);
+
+        console.log(productoJsonString);
 
         let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php'; // SE ASIGNA LA URL DEPENDIENDO SI SE ESTA AGREGANDO O EDITANDO UN PRODUCTO
 
@@ -130,10 +147,17 @@ $(document).ready(function() {
                 document.getElementById("container").innerHTML = template_bar;
 
                 listarProductos();
-                init();
+
                 edit = false; // SE REINICIA LA VARIABLE DE EDICION
                 $('#submit-button').text('Agregar Producto'); // SE CAMBIA EL TEXTO DEL BOTON A AGREGAR PRODUCTO
-                $('#name').val(''); // SE LIMPIA EL CAMPO DE NOMBRE
+                $('#form-name').val(''); // SE LIMPIA EL CAMPO DE NOMBRE
+                $('#form-brand').val(''); // SE LIMPIA EL CAMPO DE MARCA
+                $('#form-model').val(''); // SE LIMPIA EL CAMPO DE MODELO
+                $('#form-price').val(''); // SE LIMPIA EL CAMPO DE PRECIO
+                $('#form-details').val(''); // SE LIMPIA EL CAMPO DE DETALLES
+                $('#form-units').val(''); // SE LIMPIA EL CAMPO DE UNIDADES
+                $('#form-img').val(''); // SE LIMPIA EL CAMPO DE IMAGEN
+                $('#productId').val(''); // SE LIMPIA EL CAMPO DE ID
             }
         });
     });
@@ -205,17 +229,20 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.product-item', function() {
-        selectedProductId = $(this)[0].parentElement.parentElement.getAttribute('productid'); // SE OBTIENE EL ID DEL PRODUCTO SELECCIONADO
+        
+        let id = $(this)[0].parentElement.parentElement.getAttribute('productId'); // SE OBTIENE EL ID DEL PRODUCTO SELECCIONADO
+        $.post('./backend/product-single.php', {id}, function(response){ // SE REALIZA UNA PETICION AJAX PARA OBTENER EL PRODUCTO SELECCIONADO
+            const product = JSON.parse(response); // SE OBTIENE EL PRODUCTO SELECCIONADO
 
-        $.post('./backend/product-single.php', {id: selectedProductId}, function(response){ // SE OBTIENE EL PRODUCTO SELECCIONADO
-            const product = JSON.parse(response);
-            $('#name').val(product[0].nombre); // SE CARGA EL NOMBRE DEL PRODUCTO EN EL CAMPO DE NOMBRE
-            let productWithoutId = {...product[0]}; // SE COPIA EL PRODUCTO PARA ELIMINAR EL ID Y ELIMINADO 
-            delete productWithoutId.id; // SE ELIMINA EL ID para que no se muestre en el formulario
-            delete productWithoutId.nombre; //SE ELIMINA EL NOMBRE PARA QUE NO SE MUESTRE EN EL FORMULARIO
-            delete productWithoutId.eliminado; // SE ELIMINA EL ATRIBUTO "ELIMINADO" PARA QUE NO SE MUESTRE EN EL FORMULARIO
-
-            $('#description').val(JSON.stringify(productWithoutId, null, 4)); // SE CARGA EL JSON DEL PRODUCTO EN EL CAMPO DE DESCRIPCION
+            $('#productId').val(id); // SE ASIGNA EL ID DEL PRODUCTO AL FORMULARIO
+            $('#form-name').val(product[0].nombre); // SE ASIGNA EL NOMBRE DEL PRODUCTO AL FORMULARIO
+            $('#form-brand').val(product[0].marca);
+            $('#form-model').val(product[0].modelo);
+            $('#form-price').val(product[0].precio);
+            $('#form-details').val(product[0].detalles);
+            $('#form-units').val(product[0].unidades);
+            $('#form-img').val(product[0].imagen);
+            
             edit = true;
 
             $('#submit-button').text('Editar Producto');
