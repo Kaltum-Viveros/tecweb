@@ -1,7 +1,7 @@
 <?php
-    use TECWEB\MYAPI\Products as Products;
+    use TECWEB\MYAPI\Read;
     include_once __DIR__.'/myapi/Products.php';
-    $prod = new Products ('marketzone');
+    $prod = new Read ('marketzone');
     $prod->singleByName($_GET['name']);
     echo $prod->getData();
 ?>

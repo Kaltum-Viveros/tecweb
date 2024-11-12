@@ -72,6 +72,7 @@ $(document).ready(function() {
             type: 'GET',
             data: { search: search },
             success: function(response) {
+                console.log(response);
                 let productos = JSON.parse(response);
 
                 if (Object.keys(productos).length > 0) {
@@ -106,14 +107,17 @@ $(document).ready(function() {
                     });
 
                     // Actualizar el DOM con los resultados
-                    document.getElementById("product-result").className = "card my-4 d-block";
+                    document.getElementById("product-result").className = "card my-4 d-block"; // SE MUESTRA LA BARRA DE BUSQUEDA 
                     document.getElementById("container").innerHTML = template_bar;
                     document.getElementById("products").innerHTML = template;
                 } else {
-                    // Manejar el caso en que no se encuentran productos
-                    document.getElementById("product-result").className = "card my-4 d-none"; // Ocultar el contenedor
-                    document.getElementById("container").innerHTML = ""; // Limpiar la barra de estado
-                    document.getElementById("products").innerHTML = ""; // Limpiar la tabla de productos
+                    if(Object.keys(products).length == 0) { // SI NO SE ENCUENTRAN PRODUCTOS SE MUESTRA UN MENSAJE
+                        let template_bar = ''; // SE CREA UNA VARIABLE PARA ALMACENAR EL HTML DE LA BARRA DE BUSQUEDA
+                        template_bar += `<li>No se encontraron productos</il>`; // SE AGREGA EL MENSAJE A LA VARIABLE
+                        document.getElementById("product-result").className = "card my-4 d-block"; // SE MUESTRA LA BARRA DE BUSQUEDA 
+                        document.getElementById("container").innerHTML = template_bar; // SE MUESTRA EL MENSAJE DE NO ENCONTRADO EN LA BARRA DE BUSQUEDA
+                        document.getElementById("products").innerHTML = ''; // SE LIMPIA LA LISTA DE PRODUCTOS
+                    }
                 }
             },
             error: function() {
