@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CatalogoVOD>
+    <cuenta correo="viverosgomezk@gmail.com">
+        <perfiles>
+            <perfil nombre="Kaltum" idioma="Español" />
+            <perfil nombre="Pablo" idioma="Inglés" />
+        </perfiles>
+    </cuenta>
+    
+    <contenido>
+        <peliculas>
+            <genero nombre="Fantasía">
+                <titulo nombre="Howl's Moving Castle" duracion="119 minutos" />
+                <titulo nombre="Spirited Away" duracion="125 minutos" />
+                <titulo nombre="Las crónicas de Narnia: El león, la bruja y el ropero" duracion="150 minutos" />
+                <titulo nombre="Harry Potter y el prisionero de Azkaban" duracion="142 minutos" />
+            </genero>
+
+            <genero nombre="Sci-Fi">
+                <titulo nombre="Interestelar" duracion="169 minutos" />
+                <titulo nombre="Pacific Rim" duracion="125 minutos" />
+                <titulo nombre="Avatar" duracion="162 minutos" />
+                <titulo nombre="El Juego de Ender" duracion="114 minutos" />
+            </genero>
+        </peliculas>
+
+        <programas>
+            <genero nombre="Anime">
+                <titulo nombre="Violet Evergarden" duracion="13 episodios" />
+                <titulo nombre="Jujustu Kaisen" duracion="24 episodios" />
+                <titulo nombre="My Hero Academia" duracion="108 episodios" />
+                <titulo nombre="Demon Slayer El Distrito Rojo" duracion="11 episodios" />
+            </genero>
+
+            <genero nombre="K-Dramas">
+                <titulo nombre="Twenty Five Twenty One" duracion="16 episodios" />
+                <titulo nombre="Destined With You" duracion="16 episodios" />
+                <titulo nombre="True Beauty" duracion="16 episodios" />
+                <titulo nombre="King The Land" duracion="16 episodios" />
+            </genero>
+        </programas>
+    </contenido>
+</CatalogoVOD>
