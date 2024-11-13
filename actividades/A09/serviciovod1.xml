@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CatalogoVOD>
+    <cuenta>
+        <correo>viverosgomezk@gmail.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>Kaltum</usuario>
+                <idioma>Español</idioma>
+            </perfil>
+            <perfil>
+                <usuario>Pablo</usuario>
+                <idioma>Inglés</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Fantasía</nombre>
+                <titulo>
+                    <nombre>Howl's Moving Castle</nombre>
+                    <duracion>119 minutos</duracion>
+                </titulo>
+                
+                <titulo>
+                    <nombre>Spirited Away</nombre>
+                    <duracion>125 minutos</duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Las crónicas de Narnia: El león, la bruja y el ropero</nombre>
+                    <duracion>150 minutos</duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Harry Potter y el prisionero de Azkaban</nombre>
+                    <duracion>142 minutos</duracion>
+                </titulo>
+            </genero>
+
+            <genero>
+                <nombre>Sci-Fi</nombre>
+                <titulo>
+                    <nombre>Interestelar</nombre>
+                    <duracion>169 minutos</duracion>
+                </titulo>
+                
+                <titulo>
+                    <nombre>Pacific Rim</nombre>
+                    <duracion>125 minutos</duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Avatar</nombre>
+                    <duracion>162 minutos</duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>El Juego de Ender</nombre>
+                    <duracion>114 minutos</duracion>
+                </titulo>
+            </genero>
+        </peliculas>
+
+        <programas>
+            <genero>
+                <nombre>Anime</nombre>
+                <titulo>
+                    <nombre>Violet Evergarden</nombre>
+                    <duracion>13 episodios</duracion>
+
+                    <nombre>Jujutsu Kaisen</nombre>
+                    <duracion>24 episodios</duracion>
+
+                    <nombre>My Hero Academia</nombre>
+                    <duracion>108 episodios</duracion>
+
+                    <nombre>Demon Slayer El Distrito Rojo</nombre>
+                    <duracion>11 episodios</duracion>
+                </titulo>
+            </genero>
+
+            <genero>
+                <nombre>K-Dramas</nombre>
+                <titulo>
+                    <nombre>Twenty Five Twenty One</nombre>
+                    <duracion>16 episodios</duracion>
+
+                    <nombre>Destined With You</nombre>
+                    <duracion>16 episodios</duracion>
+
+                    <nombre>True Beautu</nombre>
+                    <duracion>16 episodios</duracion>
+
+                    <nombre>King the Land</nombre>
+                    <duracion>16 episodios</duracion>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</CatalogoVOD>
