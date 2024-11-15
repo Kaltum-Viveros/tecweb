@@ -1,2 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+
+<cinefanatico>
+    <tarjeta noserie="12345" visitas="5" puntos="100">
+        <nombre>Juan Pérez</nombre>
+        <correo>juan.perez@example.com</correo>
+        <telefono tipo="movil">123-456-7890</telefono>
+    </tarjeta>
+    
+    <tarjeta noserie="67890" visitas="10" puntos="200">
+        <nombre>Maria Gómez</nombre>
+        <correo>maria.gomez@example.com</correo>
+        <telefono tipo="casa">098-765-4321</telefono>
+        <telefono tipo="movil">321-654-9870</telefono>
+    </tarjeta>
+</cinefanatico>
