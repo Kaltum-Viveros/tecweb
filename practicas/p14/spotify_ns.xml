@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tw:Spotify xmlns:tw="http://tecnologiasweb.com.mx"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://tecnologiasweb.com.mx spotify_ns.xsd"
+            version="1.0">
+
+    <tw:Cuenta id="3" plan="Estudiante" fechaIni="2024-10-10" fechaFin="2025-10-10">
+        <tw:Nombre>Angel Abraham Viveros Gomez</tw:Nombre>
+        <tw:Correo>viverosgomeza@gmail.com</tw:Correo>
+        <tw:Telefono tipo="movil">987-654-3210</tw:Telefono>
+    </tw:Cuenta>
+
+    <tw:Cuenta id="4" plan="Gratis">
+        <tw:Nombre>Juan Carlos Torres Gomez</tw:Nombre>
+        <tw:Correo>carlostg@gmail.com</tw:Correo>
+    </tw:Cuenta>
+</tw:Spotify>
