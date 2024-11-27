@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="regionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MEX"/>
+            <xs:enumeration value="USA"/>
+            <xs:enumeration value="ESP"/>
+            <xs:enumeration value="ARG"/>
+            <xs:enumeration value="KOR"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="CatalogoVOD">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cuenta">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="perfiles">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="perfil" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="nombre" type="xs:string" use="required"/>
+                                                <xs:attribute name="idioma" type="xs:string" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="correo" type="xs:string" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="contenido">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="peliculas">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="genero" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="titulo" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="nombre" type="xs:string" use="required"/>
+                                                            <xs:attribute name="duracion" type="xs:string" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="nombre" type="xs:string" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="region" type="regionType" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="series">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="genero" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="titulo" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="nombre" type="xs:string" use="required"/>
+                                                            <xs:attribute name="duracion" type="xs:string" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="nombre" type="xs:string" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="region" type="regionType" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

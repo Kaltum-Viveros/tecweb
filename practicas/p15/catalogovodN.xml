@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE CatalogoVOD SYSTEM "serviciovod_ep.dtd">
+<?xml-stylesheet type="text/xsl" href="catalogovod.xsl"?>
+<CatalogoVOD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="serviciovod.xsd">
 
-<CatalogoVOD>
     <cuenta correo="viverosgomezk@gmail.com">
         <perfiles>
             <perfil nombre="Kaltum" idioma="Español" />
             <perfil nombre="Pablo" idioma="Inglés" />
-        </perfiles> 
+        </perfiles>
     </cuenta>
     
     <contenido>
